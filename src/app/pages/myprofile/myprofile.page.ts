@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { MyprofileService } from 'src/app/services/myprofile.service';
 import { ToastService } from 'src/app/services/toast.service';
+import { Plugins } from '@capacitor/core';
+const { Browser } = Plugins;
 
 @Component({
   selector: 'app-myprofile',
@@ -48,6 +50,10 @@ getProfile(token: any){
       }
     );
 
+}
+
+changePwd(){
+  Browser.open({ url: 'http://library.kuis.edu.my/Home/ForgotPassword' });
 }
 
 editprofile(){

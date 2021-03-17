@@ -5,15 +5,15 @@
     </ion-buttons>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-segment value="a" (ion-change)=segmentChanged($event)>
+    <ion-segment value="a">
       <ion-segment-button value="a">
         <ion-label>
-          Pustaka Catalogue
+           Catalogue
         </ion-label>
       </ion-segment-button>
       <ion-segment-button value="b">
         <ion-label>
-          LOC
+          Repository
         </ion-label>
       </ion-segment-button>
     </ion-segment>
@@ -21,96 +21,7 @@
 </ion-header>
 
 <ion-content>
- 
-    <ion-grid fixed *ngIf="selectedSegment == 'a'">
-    <div class="title ion-padding font-bold">
-      <h5>Search Results for "islam"</h5>
-      <p>Total 33 results</p>
-    </div>
-    <ion-row class="header-row" scrollable>
-      <ion-col>
-        Cover
-      </ion-col>
-      <ion-col>
-        Title
-      </ion-col>
-      <ion-col>
-        Author
-      </ion-col>
-      <ion-col class="ion-hide-lg-down">
-        Call Number
-      </ion-col>
-      <ion-col class="ion-hide-lg-down">
-        Publication Year
-      </ion-col>
-      <ion-col>
-        Available
-      </ion-col>
-    </ion-row>
-    <ion-row class="res" *ngFor="let book of books">
-      <ion-col>
-        <img src="{{ book.cover }}" (click)="bookdetails()"/>
-      </ion-col>
-      <ion-col>
-        <h4>{{ book.title }}</h4>
-      </ion-col>
-      <ion-col>
-        <h4>{{ book.author }}</h4>
-      </ion-col>
-      <ion-col class="ion-hide-lg-down">
-        <h4>{{ book.call_no }}</h4>
-      </ion-col>
-      <ion-col class="ion-hide-lg-down">
-        <h4>{{ book.pyear }}</h4>
-      </ion-col>
-      <ion-col>
-        <h4>{{ book.available }}</h4>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  
-   <ion-grid fixed *ngIf="selectedSegment == 'b'">
-    <ion-row class="header-row" scrollable>
-      <ion-col>
-        Cover
-      </ion-col>
-      <ion-col>
-        Title
-      </ion-col>
-      <ion-col>
-        Author
-      </ion-col>
-      <ion-col class="ion-hide-lg-down">
-        Call Number
-      </ion-col>
-      <ion-col class="ion-hide-lg-down">
-        Publication Year
-      </ion-col>
-      <ion-col>
-        Available
-      </ion-col>
-    </ion-row>
-    <ion-row class="res" *ngFor="let book of books">
-      <ion-col>
-        <img src="{{ book.cover }}" (click)="bookdetails()"/>
-      </ion-col>
-      <ion-col>
-        <h4>{{ book.title }}</h4>
-      </ion-col>
-      <ion-col>
-        <h4>{{ book.author }}</h4>
-      </ion-col>
-      <ion-col class="ion-hide-lg-down">
-        <h4>{{ book.call_no }}</h4>
-      </ion-col>
-      <ion-col class="ion-hide-lg-down">
-        <h4>{{ book.pyear }}</h4>
-      </ion-col>
-      <ion-col>
-        <h4>{{ book.available }}</h4>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <app-searchres-card></app-searchres-card>
 </ion-content>
 
   

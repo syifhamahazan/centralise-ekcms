@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
+import { Observable } from 'rxjs';
 import { SearchAreaComponent } from 'src/app/modal/search-area/search-area.component';
 import { AuthService } from 'src/app/services/auth.service';
-import { OpacSearchService } from 'src/app/services/opac-search.service';
+import { OpacSearchService, SearchType } from 'src/app/services/opac-search.service';
 import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
@@ -16,6 +17,11 @@ export class SearchPage implements OnInit {
   postData = {
     token: ''
   };
+
+  results: Observable<any>;
+  // tslint:disable-next-line: no-inferrable-types
+  searchTerm: string = '';
+  type: SearchType = SearchType.title;
   constructor(
     private auth: AuthService,
     private router: Router,
@@ -33,6 +39,14 @@ export class SearchPage implements OnInit {
 
   }
 
+  searchChanged(event) {
+    // Call our service function which returns an Observable
+    console.log('Token for search');
+    console.log(this.authUser);
+    this.results = this.opacSearchService.searchData(this.searchTerm, this.type, this.authUser);
+    console.log(this.results);
+  }
+
   _ionChange(event) {
     console.log(event.detail.value);
   }
@@ -42,30 +56,30 @@ searchAction(){
  }
 
 advSearch(){
-  this.router.navigate(['./home/advance-search']);
+  this.router.navigate(['./home/maintenance']);
 }
 
 rbrSearch(){
   this.router.navigate(['./home/rbr-search']);
 }
 
-opacSearch(token: any){
-  // this.postData.token = this.authUser;
-  console.log('This is token');
-  console.log(token);
-  // tslint:disable-next-line: deprecation
-  this.opacSearchService.opacSearchRes(token).subscribe(
-      (res: any) => {
-        console.log('Search response');
-        console.log(res);
-        // this.opacSearchService.changeFinesData(res);
-      },
-      (error: any) => {
-        this.toastService.presentToast('Loading...');
-      }
-    );
+// opacSearch(token: any){
+//   // this.postData.token = this.authUser;
+//   console.log('This is token');
+//   console.log(token);
+//   // tslint:disable-next-line: deprecation
+//   this.opacSearchService.opacSearchRes(token).subscribe(
+//       (res: any) => {
+//         console.log('Search response');
+//         console.log(res);
+//         // this.opacSearchService.changeFinesData(res);
+//       },
+//       (error: any) => {
+//         this.toastService.presentToast('Loading...');
+//       }
+//     );
 
-}
+// }
 
 async searchArea(){
   const modal = await this.modalCtrl.create({

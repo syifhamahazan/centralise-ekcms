@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> Wishlist Request Form
+    </ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="dismissModal()">Close</ion-button>
+      </ion-buttons> 
+  </ion-toolbar>
+</ion-header>
+
+<div class="order-items" *ngFor="let wl of wishlistData; first as isFirst">
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="floating" class="required">Title</ion-label>
+    <ion-input [formControl]="required" type="text"*ngIf="isFirst">{{wl.title}}</ion-input>
+
+    <ion-label position="floating" class="required">Author</ion-label>
+    <ion-input [formControl]="required" type="text"></ion-input>
+
+    <ion-label position="floating">ISBN/ISSN</ion-label>
+    <ion-input type="text"></ion-input>
+
+    <ion-label position="floating">Publisher</ion-label>
+    <ion-input type="text"></ion-input>
+
+    <ion-label position="floating">Publication Year</ion-label>
+    <ion-input type="text"></ion-input>
+
+    <ion-label position="floating">Edition</ion-label>
+    <ion-input type="text"></ion-input>
+
+    <ion-label position="floating">Quantity</ion-label>
+    <ion-input type="number"></ion-input>
+
+    <ion-label position="floating" class="required">Referrer/Lecturer</ion-label>
+    <ion-input [formControl]="required" type="text"></ion-input>
+
+    <ion-label position="floating">Comment</ion-label>
+    <ion-input type="text"></ion-input>
+
+
+    <ion-label position="floating" class="required">Faculty</ion-label>
+    <ion-input [formControl]="required" type="text">
+      <ion-select placeholder="Select One">
+        <ion-select-option value="f">Pentadbiran</ion-select-option>
+        <ion-select-option value="m">Perpustakaan</ion-select-option>
+    </ion-select>
+    </ion-input>
+
+    <ion-label position="floating" class="required">Course</ion-label>
+    <ion-input [formControl]="required" type="text">
+      <ion-select placeholder="Select One">
+        <ion-select-option value="f">Pentadbiran</ion-select-option>
+        <ion-select-option value="m">Perpustakaan</ion-select-option>
+    </ion-select>
+    </ion-input>
+
+    <ion-label position="floating" class="required">References</ion-label>
+    <ion-input [formControl]="required" type="text">
+      <ion-select placeholder="Select One">
+        <ion-select-option value="f">Buku Rujukan</ion-select-option>
+        <ion-select-option value="m">E-book</ion-select-option>
+        <ion-select-option value="m">Majalah</ion-select-option>
+
+    </ion-select>
+    </ion-input>
+
+
+  </ion-item>
+  <ion-button [disabled]="required.invalid" expand="block" (click)="wishlistUpdateAction()" class="ion-margin-top">Request</ion-button>
+</ion-content>
+</div>

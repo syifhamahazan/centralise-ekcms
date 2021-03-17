@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoadingController, NavController } from '@ionic/angular';
 import { AuthConstants } from 'src/app/config/auth-constants';
 import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
@@ -18,11 +19,15 @@ export class LoginAuthPage implements OnInit {
     password: ''
   };
 
+  private loading;
+
   constructor(
     private router: Router,
     private toastService: ToastService,
     private storageService: StorageService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private navCtrl: NavController,
+    private loadingCtrl: LoadingController) { }
 
   ngOnInit() {
   }
@@ -35,45 +40,47 @@ export class LoginAuthPage implements OnInit {
       return (this.postData.username && this.postData.password && username.length > 0 && password.length > 0 && this.postData.grant_type);
     }
   firstLogin(){
-    console.log(this.qty);
-    if (this.qty === '011'){
-      if (this.validateInputs){
-        this.authService.login(this.postData).subscribe((res: any) => {
-          console.log('Done validate');
-          console.log(res);
-          // userData depend on name in API
-          if (res) {
-            // Storing the User data.
-            this.storageService.store(AuthConstants.AUTH, res.access_token);
-            this.router.navigate(['./home/search']);
-          } else {
-            this.toastService.presentToast('Incorrect username and password');
+    this.loadingCtrl.create({
+      message: 'Authenticating...'
+  }).then((overlay) => {
+    this.loading = overlay;
+    this.loading.present();
+  });
+    setTimeout(() => {
+        this.loading.dismiss();
+        console.log(this.qty);
+        if (this.qty === '011'){
+          if (this.validateInputs){
+            // tslint:disable-next-line: deprecation
+            this.authService.login(this.postData).subscribe((res: any) => {
+              console.log('Done validate');
+              console.log(res);
+              // userData depend on name in API
+              if (res) {
+                // Storing the User data.
+                this.storageService.store(AuthConstants.AUTH, res.access_token);
+                this.router.navigate(['./home/search']);
+              } else {
+                this.toastService.presentToast('Incorrect username and password');
+              }
+            },
+            (error: any) => {
+              if (error.status === 400){
+                this.toastService.presentToast('Incorrect username and password');
+              }
+              else {
+              this.toastService.presentToast('Network Connection Error.');
+              }
+            });
           }
-        },
-        (error: any) => {
-          if (error.status === 400){
-            this.toastService.presentToast('Incorrect username and password');
-          }
-          else {
-          this.toastService.presentToast('Network Connection Error.');
-          }
-        });
-      }
-      // this.router.navigate(['./home/search']);
-    }
-    else{
-      this.toastService.presentToast('Authorization failed! Please try again.');
-    }
+          // this.router.navigate(['./home/search']);
+        }
+        else{
+          this.toastService.presentToast('Authorization failed! Please try again.');
+        }
 
-   // alert('hello');
-   // if (this.validateInput()){
-   //   // this.authService.login(this.postData).subscribe([res: any] =>{
+      }, 4000);
 
-   //   // })
-   // }else{
-
-   //   console.log('Please give some information');
-   // }
    }
 
 }

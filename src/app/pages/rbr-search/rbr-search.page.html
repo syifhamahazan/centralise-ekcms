@@ -9,16 +9,16 @@
   <form id="form">
     <ion-item>
       <ion-label position="floating">Filter By</ion-label>
-        <ion-select ok-text="Okay" cancel-text="Cancel">
+        <ion-select [(ngModel)]="type" (ionChange)="searchChanged($event)">
           <ion-select-option value="title">Lecturer Name</ion-select-option>
           <ion-select-option value="author">Course Name</ion-select-option>
         </ion-select>
     
     </ion-item>
     <div class="search">
-    <ion-item>
-      <ion-input placeholder='Enter keywords' types='text'></ion-input>
-    </ion-item> 
+
+      <ion-searchbar showCancelButton="focus" cancelButtonText="Cancel" [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)"></ion-searchbar>
+
     </div>
     <ion-grid class="ion-text-center">
       <ion-row>
@@ -30,4 +30,22 @@
        </ion-row>
     </ion-grid>
   </form>
+
+  <ion-list>
+ 
+    <ion-item button *ngFor="let item of results">
+      <ion-thumbnail slot="start">
+        <img src="../../../assets/images/book5.jpg">
+      </ion-thumbnail>
+ 
+      <ion-label text-wrap *ngIf="item?.length == 0">
+        <h3>No data found</h3>
+      </ion-label>
+ 
+ 
+    </ion-item>
+ 
+  </ion-list>
+ 
+
 </ion-content>

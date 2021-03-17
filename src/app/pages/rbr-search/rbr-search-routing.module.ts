@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: RbrSearchPage
+  },
+  {
+    path: 'rbr-result',
+    loadChildren: () => import('./rbr-result/rbr-result.module').then( m => m.RbrResultPageModule)
   }
 ];
 

@@ -9,6 +9,7 @@ import { MywishlistPageRoutingModule } from './mywishlist-routing.module';
 import { MywishlistPage } from './mywishlist.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { WishlistReqComponent } from 'src/app/modal/wishlist/wishlist-req/wishlist-req.component';
+import { WishlistUpdateComponent } from 'src/app/modal/wishlist/wishlist-update/wishlist-update.component';
 
 @NgModule({
   imports: [
@@ -19,6 +20,6 @@ import { WishlistReqComponent } from 'src/app/modal/wishlist/wishlist-req/wishli
     MywishlistPageRoutingModule,
     ReactiveFormsModule  ],
   declarations: [MywishlistPage],
-  entryComponents: [WishlistReqComponent]
+  entryComponents: [WishlistReqComponent, WishlistUpdateComponent]
 })
 export class MywishlistPageModule {}

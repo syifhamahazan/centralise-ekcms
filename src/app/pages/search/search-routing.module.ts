@@ -7,7 +7,12 @@ const routes: Routes = [
   {
     path: '',
     component: SearchPage
+  },
+  {
+    path: 'opac-result/:citedworkId',
+    loadChildren: () => import('./opac-result/opac-result.module').then( m => m.OpacResultPageModule)
   }
+
 ];
 
 @NgModule({

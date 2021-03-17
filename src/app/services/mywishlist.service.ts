@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpService } from './http.service';
@@ -6,8 +7,10 @@ import { HttpService } from './http.service';
   providedIn: 'root'
 })
 export class MywishlistService {
+  url = 'http://192.168.100.101:8081/api/wishlist';
+
   wishlistData$ = new BehaviorSubject<any>([]);
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService, private http: HttpClient) { }
 
   changeWishlistData(data: any) {
     this.wishlistData$.next(data);
@@ -38,6 +41,36 @@ export class MywishlistService {
       return this.httpService.delete('api/wishlist', postData);
     }
 
+// get details wishlist data
+getwlDetails(wlId, token) {
+  const headerDict = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+    'Access-Control-Allow-Headers': 'Authorization',
+    'Content-Type': 'application/json',
+    Authorization: 'Bearer ' + token
+  };
+
+  const requestOptions = {
+    headers: new HttpHeaders(headerDict)
+  };
+  return this.http.get(`${this.url}?Id=${encodeURI(wlId)}`, requestOptions);
+}
+
+
+updateWishlistData(newWishlist: any) {
+  const data = [];
+  data.push(newWishlist);
+  const currentWishlistData = this.getCurrentWishlistData();
+
+  const newWishlistUpdateData = data.concat(currentWishlistData);
+  this.changeWishlistData(newWishlistUpdateData);
+}
+
+
+wishlistUpdate(postData: any): Observable<any> {
+  return this.httpService.post('wishlistUpdate', postData);
+}
 
 
 }

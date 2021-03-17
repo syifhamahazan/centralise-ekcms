@@ -1,0 +1,48 @@
+<ion-grid>
+  <div class="title ion-padding font-bold">
+    <h5>Search Results for ...</h5>
+    <p>Total results</p>
+  </div>
+  <ion-row class="header-row" scrollable>
+    <ion-col>
+      Cover
+    </ion-col>
+    <ion-col>
+      Title
+    </ion-col>
+    <ion-col>
+      Author
+    </ion-col>
+    <ion-col class="ion-hide-lg-down">
+      Call Number
+    </ion-col>
+    <ion-col class="ion-hide-lg-down">
+      Publication Year
+    </ion-col>
+    <ion-col>
+      Available
+    </ion-col>
+  </ion-row>
+  <ion-row class="res" *ngFor="let sr of searchresData">
+    <ion-col>
+      <img src="../../../assets/images/book5.jpg"/>
+    </ion-col>
+    <ion-col>
+      <ion-label>{{ sr.title }}</ion-label>
+    </ion-col>
+    <ion-col>
+      <h4>{{ sr.author }}</h4>
+    </ion-col>
+    <ion-col class="ion-hide-lg-down">
+      <h4>{{ sr.callNumber }}</h4>
+    </ion-col>
+    <ion-col class="ion-hide-lg-down">
+      <h4>{{ sr.pyear }}</h4>
+    </ion-col>
+    <ion-col>
+      <h4>{{ sr.available }}</h4>
+    </ion-col>
+  </ion-row>
+
+</ion-grid>
+

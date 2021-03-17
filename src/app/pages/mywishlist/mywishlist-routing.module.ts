@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: MywishlistPage
+  },
+  {
+    path: 'wishlist-update/:Id',
+    loadChildren: () => import('./wishlist-update/wishlist-update.module').then( m => m.WishlistUpdatePageModule)
   }
 ];
 

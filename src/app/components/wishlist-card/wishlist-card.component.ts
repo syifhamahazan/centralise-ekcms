@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { WishlistUpdateComponent } from 'src/app/modal/wishlist/wishlist-update/wishlist-update.component';
 import { MywishlistService } from 'src/app/services/mywishlist.service';
 import { WishlistAlertService } from 'src/app/services/wishlist-alert.service';
 
@@ -14,7 +16,11 @@ export class WishlistCardComponent implements OnInit {
     id: '',
     token: ''
   };
-  constructor(private mywishlistService: MywishlistService, private alertSerivce: WishlistAlertService) {}
+  constructor(
+    private mywishlistService: MywishlistService,
+    private alertSerivce: WishlistAlertService,
+    private modalContoller: ModalController
+    ) {}
 
   ngOnInit() {
     // tslint:disable-next-line: deprecation
@@ -33,6 +39,7 @@ export class WishlistCardComponent implements OnInit {
       console.log(res.role);
       if (res.role === 'okay') {
         this.makewishlistDelete(this.postData, wishlistIndex);
+        console.log(this.postData);
       //   this.mywishlistService.cancelwishlistReq(this.postData).subscribe((res: any) => {
       //     if (res.success) {
       //       this.mywishlistService.deleteFeedData(msgIndex);
@@ -43,7 +50,16 @@ export class WishlistCardComponent implements OnInit {
   makewishlistDelete(postData: any, wishlistIndex: number){
     // tslint:disable-next-line: deprecation
     this.mywishlistService.cancelwishlistReq(this.postData).subscribe((res: any) => {
-      console.log(res);
+      console.log('remove wishlist');
     });
+  }
+
+  async wishlistEdit(){
+    const modal = await this.modalContoller.create({
+      component: WishlistUpdateComponent
+    });
+
+    await modal.present();
+
   }
 }

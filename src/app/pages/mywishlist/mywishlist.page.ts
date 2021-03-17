@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { Observable } from 'rxjs';
 import { WishlistReqComponent } from 'src/app/modal/wishlist/wishlist-req/wishlist-req.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { MywishlistService } from 'src/app/services/mywishlist.service';
@@ -16,7 +17,7 @@ export class MywishlistPage implements OnInit {
     token: ''
   };
 
-
+  wishlists: Observable<any>;
   constructor(
     private modalContoller: ModalController,
     private auth: AuthService,

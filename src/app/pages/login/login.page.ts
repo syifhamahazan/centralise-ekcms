@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoadingController, NavController } from '@ionic/angular';
 import { AuthConstants } from 'src/app/config/auth-constants';
 import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
@@ -17,11 +18,16 @@ export class LoginPage implements OnInit {
     password: ''
   };
 
+  private loading;
+
   constructor(
     private router: Router,
     private authService: AuthService,
     private storageService: StorageService,
-    private toastService: ToastService) { }
+    private toastService: ToastService,
+    private navCtrl: NavController,
+    private loadingCtrl: LoadingController
+    ) { }
 
   ngOnInit() {
   }
@@ -35,7 +41,15 @@ export class LoginPage implements OnInit {
   }
 
   loginAction(){
-  if (this.validateInputs()) {
+  this.loadingCtrl.create({
+      message: 'Login...'
+  }).then((overlay) => {
+    this.loading = overlay;
+    this.loading.present();
+  });
+  setTimeout(() => {
+    this.loading.dismiss();
+    if (this.validateInputs()) {
     // tslint:disable-next-line: deprecation
     this.authService.login(this.postData).subscribe((res: any) => {
       console.log('Done validate');
@@ -49,12 +63,19 @@ export class LoginPage implements OnInit {
       }
     },
     (error: any) => {
+      if (error.status === 400){
+        this.toastService.presentToast('Incorrect username and password');
+      }
+      else {
       this.toastService.presentToast('Network Connection Error.');
-    });
+      }
+});
   } else {
 
     this.toastService.presentToast('Please give some information');
   }
+  }, 4000);
+
   }
 
 }

@@ -10,18 +10,15 @@ export class HttpService {
   constructor(private http: HttpClient) {}
 
   post(serviceName: string, data: any) {
-  //   const headers = new HttpHeaders({
-  //     'Content-Type': 'application/x-www-form-urlencoded'
-  //  });
+
   const body = new HttpParams()
   .set(`grant_type`, data.grant_type)
   .set(`username`, data.username)
   .set(`password`, data.password);
   const apiHeaders = {'Content-Type': 'application/x-www-form-urlencoded'};
 
-    // const options = { header: headers };
-
   const url = environment.apiUrl + serviceName;
+  console.log(url);
   console.log(apiHeaders, data);
   return this.http.post(url, body.toString(), {headers: apiHeaders });
   }
@@ -37,7 +34,7 @@ export class HttpService {
     };
     const url = environment.apiUrl + serviceName;
     console.log(apiHeaders, data);
-    return this.http.delete(url, { headers: apiHeaders });
+    return this.http.put(url, { headers: apiHeaders });
     }
 
   getProfile(serviceName: string, data: any) {
@@ -170,6 +167,21 @@ export class HttpService {
           console.log (url);
           return this.http.get(url, { headers: apiHeaders });
           }
+
+          getSearchRes(serviceName: string, data: any) {
+            const body = new HttpParams()
+            .set(`searchField`, `10011`);
+            const apiHeaders = {
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+              'Access-Control-Allow-Headers': 'Authorization',
+              Authorization: 'Bearer ' + data
+            };
+            const url = environment.apiUrl + serviceName;
+            console.log (url + body);
+            return this.http.get(`${url}?${body}`, { headers: apiHeaders });
+            }
+
 
 
 }

@@ -8,16 +8,17 @@
 </div>
 
   <form id="form">
+    <ion-searchbar showCancelButton="focus" cancelButtonText="Cancel" [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)"></ion-searchbar>
+
     <ion-item>
-      <ion-searchbar debounce="500" showCancelButton="focus" cancelButtonText="Cancel" (ionChange)="_ionChange($event)"></ion-searchbar>
       <ion-label position="floating">Search By...</ion-label>
-        <ion-select ok-text="Okay" cancel-text="Cancel">
+        <ion-select [(ngModel)]="type" (ionChange)="searchChanged($event)">
           <ion-select-option value="title">Title</ion-select-option>
           <ion-select-option value="author">Author</ion-select-option>
-          <ion-select-option value="ISBN">ISBN</ion-select-option>
-          <ion-select-option value="ISSN">ISSN</ion-select-option>
+          <ion-select-option value="isbn">ISBN</ion-select-option>
+          <ion-select-option value="issn">ISSN</ion-select-option>
           <ion-select-option value="subject">Subject</ion-select-option>
-          <ion-select-option value="sall Number">Call Number</ion-select-option>
+          <ion-select-option value="call number">Call Number</ion-select-option>
           <ion-select-option value="series">Series</ion-select-option>
         </ion-select>
     
@@ -29,11 +30,11 @@
     </div> -->
     <ion-grid class="ion-text-center">
       <ion-row>
-        <ion-col>
+        <!-- <ion-col>
           <div>
             <ion-button expand="block" class="search-button" (click)="searchAction()" ><ion-icon name="search-outline"></ion-icon></ion-button>
           </div>
-        </ion-col>
+        </ion-col> -->
         <ion-col>
           <div>
             <ion-button expand="block" class="search-button" (click)="searchArea()">Search by Area</ion-button>
@@ -55,6 +56,23 @@
     </ion-grid>
   </form>
 
+  <ion-list>
+ 
+    <ion-item button *ngFor="let item of (results | async)" [routerLink]="['./', 'opac-result', item.citedworkId]">
+      <ion-thumbnail slot="start">
+        <img src="../../../assets/images/book5.jpg">
+      </ion-thumbnail>
+ 
+      <ion-label text-wrap>
+        {{ item.title.substring(2) }}
+        <h3>{{ item.author.substring(2) }}</h3>
+      </ion-label>
+ 
+ 
+    </ion-item>
+ 
+  </ion-list>
+ 
 
 
 </ion-content>

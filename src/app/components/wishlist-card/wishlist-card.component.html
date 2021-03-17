@@ -44,8 +44,8 @@
         </ion-item>
       </div>
 
-        <ion-button expand="block" color="warning" (click)="removewlReq(wl.id, i)">Remove</ion-button>
-        <ion-button expand="block" color="secondary">Edit</ion-button>
+        <ion-button expand="block" color="warning" (click)="removewlReq(wl.id, i)" [class.button-disabled]="true" >Remove</ion-button>
+        <ion-button expand="block" color="secondary" [class.button-disabled]="true" (click)="wishlistEdit()">Edit</ion-button>
       
     </ion-card-content>
   </ion-card>

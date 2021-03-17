@@ -75,6 +75,10 @@ const routes: Routes = [
         loadChildren: () => import('../pages/myfines/myfines.module').then( m => m.MyfinesPageModule)
       },
       {
+        path: 'maintenance',
+        loadChildren: () => import('../pages/maintenance/maintenance.module').then( m => m.MaintenancePageModule)
+      },
+      {
        path: 'logout',
        loadChildren: () => import('../pages/logout/logout.module').then( m => m.LogoutPageModule)
      }
