@@ -3,21 +3,26 @@
       <ion-menu-button contentId="main" slot="start"><ion-icon src="../../../assets/icon/menucircle.svg"></ion-icon></ion-menu-button>      
   </ion-toolbar>
 <div class="ion-text-center web-opac">  
-  <img src="../../../assets/images/kuis-logo.png"/>
+  <img src="../../../assets/images/upsi-logo.png"/>
   <h5 class="ion-text-center" color="ekcms">ADVANCE SEARCH</h5>
 </div>
-  <form id="form">
+<div id="formContainer">
+  <form class="theForm">
 
     <ion-item>
-      <ion-label position="floating">Filter By</ion-label>
+      <ion-label position="floating">Filter by ...</ion-label>
         <ion-select  [(ngModel)]="type1" (ionChange)="searchChanged($event)">
-          <ion-select-option value="title">Title</ion-select-option>
-          <ion-select-option value="author">Author</ion-select-option>
+          <ion-select-option value="Title">Title</ion-select-option>
+          <ion-select-option value="Author">Author</ion-select-option>
           <ion-select-option value="ISBN">ISBN</ion-select-option>
           <ion-select-option value="ISSN">ISSN</ion-select-option>
-          <ion-select-option value="subject">Subject</ion-select-option>
-          <ion-select-option value="sall Number">Call Number</ion-select-option>
-          <ion-select-option value="series">Series</ion-select-option>
+          <ion-select-option value="Subject">Subject</ion-select-option>
+          <ion-select-option value="CallNumber">Call Number</ion-select-option>
+          <ion-select-option value="Series">Series</ion-select-option>
+          <ion-select-option value="Summary">Summary</ion-select-option>
+          <ion-select-option value="Language">Language</ion-select-option>
+          <ion-select-option value="DissertationNote">Dissertation Note</ion-select-option>
+
         </ion-select>
     </ion-item>
 
@@ -25,13 +30,95 @@
 
 
     <ion-grid>
-      <ion-row *ngFor="let row of rows">
+      <ion-row  *ngFor="let row of rows; let i = index">
 
         <ion-col>
-          {{ row?.firstCol }}
           <ion-item class="operator-box">
-            <ion-label position="floating">Operator</ion-label>
-              <ion-select  [(ngModel)]="operators1" (ionChange)="searchChanged($event)">
+            <ion-label position="floating">AND | OR | NOT</ion-label>
+              <!-- <ion-select  [(ngModel)]="operators1" (ionChange)="searchChanged($event)"> -->
+              <ion-select  *ngIf= "i == 0"  [(ngModel)]="operators1" (ionChange)="searchChanged($event)">
+                <ion-select-option value="AND">AND</ion-select-option>
+                <ion-select-option value="OR">OR</ion-select-option>
+                <ion-select-option value="NOT">NOT</ion-select-option>
+              </ion-select>
+              <ion-select  *ngIf= "i == 1"  [(ngModel)]="operators2" (ionChange)="searchChanged($event)">
+                <ion-select-option value="AND">AND</ion-select-option>
+                <ion-select-option value="OR">OR</ion-select-option>
+                <ion-select-option value="NOT">NOT</ion-select-option>
+              </ion-select>
+              <ion-select  *ngIf= "i == 2"  [(ngModel)]="operators3" (ionChange)="searchChanged($event)">
+                <ion-select-option value="AND">AND</ion-select-option>
+                <ion-select-option value="OR">OR</ion-select-option>
+                <ion-select-option value="NOT">NOT</ion-select-option>
+              </ion-select>
+              <ion-select  *ngIf= "i == 3"  [(ngModel)]="operators4" (ionChange)="searchChanged($event)">
+                <ion-select-option value="AND">AND</ion-select-option>
+                <ion-select-option value="OR">OR</ion-select-option>
+                <ion-select-option value="NOT">NOT</ion-select-option>
+              </ion-select>
+
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Filter by ...</ion-label>
+            <ion-select   *ngIf= "i == 0" [(ngModel)]="type2" (ionChange)="searchChanged($event)">
+              <ion-select-option value="Title">Title</ion-select-option>
+                <ion-select-option value="Author">Author</ion-select-option>
+                <ion-select-option value="ISBN">ISBN</ion-select-option>
+                <ion-select-option value="ISSN">ISSN</ion-select-option>
+                <ion-select-option value="Subject">Subject</ion-select-option>
+                <ion-select-option value="CallNumber">Call Number</ion-select-option>
+                <ion-select-option value="Series">Series</ion-select-option>
+            </ion-select>
+
+            <ion-select *ngIf= "i == 1" [(ngModel)]="type3" (ionChange)="searchChanged($event)">
+              <ion-select-option value="Title">Title</ion-select-option>
+                <ion-select-option value="Author">Author</ion-select-option>
+                <ion-select-option value="ISBN">ISBN</ion-select-option>
+                <ion-select-option value="ISSN">ISSN</ion-select-option>
+                <ion-select-option value="Subject">Subject</ion-select-option>
+                <ion-select-option value="CallNumber">Call Number</ion-select-option>
+                <ion-select-option value="Series">Series</ion-select-option>
+            </ion-select>
+
+            <ion-select *ngIf= "i == 2" [(ngModel)]="type4" (ionChange)="searchChanged($event)">
+              <ion-select-option value="Title">Title</ion-select-option>
+                <ion-select-option value="Author">Author</ion-select-option>
+                <ion-select-option value="ISBN">ISBN</ion-select-option>
+                <ion-select-option value="ISSN">ISSN</ion-select-option>
+                <ion-select-option value="Subject">Subject</ion-select-option>
+                <ion-select-option value="CallNumber">Call Number</ion-select-option>
+                <ion-select-option value="Series">Series</ion-select-option>
+            </ion-select>
+
+            <ion-select *ngIf= "i == 3" [(ngModel)]="type5" (ionChange)="searchChanged($event)">
+              <ion-select-option value="Title">Title</ion-select-option>
+                <ion-select-option value="Author">Author</ion-select-option>
+                <ion-select-option value="ISBN">ISBN</ion-select-option>
+                <ion-select-option value="ISSN">ISSN</ion-select-option>
+                <ion-select-option value="Subject">Subject</ion-select-option>
+                <ion-select-option value="CallNumber">Call Number</ion-select-option>
+                <ion-select-option value="Series">Series</ion-select-option>
+            </ion-select>
+
+
+          </ion-item>
+        </ion-col>
+        <ion-searchbar *ngIf= "i == 0" showCancelButton="focus" cancelButtonText="Cancel" [(ngModel)]="searchField2" (ionChange)="searchChanged($event)"></ion-searchbar>
+        <ion-searchbar *ngIf= "i == 1"  showCancelButton="focus" cancelButtonText="Cancel" [(ngModel)]="searchField3" (ionChange)="searchChanged($event)"></ion-searchbar>
+        <ion-searchbar *ngIf= "i == 2"  showCancelButton="focus" cancelButtonText="Cancel" [(ngModel)]="searchField4" (ionChange)="searchChanged($event)"></ion-searchbar>
+        <ion-searchbar *ngIf= "i == 3"  showCancelButton="focus" cancelButtonText="Cancel" [(ngModel)]="searchField5" (ionChange)="searchChanged($event)"></ion-searchbar>
+
+      </ion-row>
+
+      <!-- <ion-row  *ngFor="let row of rows">
+
+        <ion-col>
+          <ion-item class="operator-box">
+            <ion-label position="floating">Operator2</ion-label>
+              <ion-select  [(ngModel)]="operators2" (ionChange)="searchChanged($event)">
                 <ion-select-option value="AND">AND</ion-select-option>
                 <ion-select-option value="OR">OR</ion-select-option>
                 <ion-select-option value="NOT">NOT</ion-select-option>
@@ -40,22 +127,21 @@
         </ion-col>
 
         <ion-col>
-          {{ row?.secondCol }}
           <ion-item>
-            <ion-label position="floating">Filter By</ion-label>
-            <ion-select  [(ngModel)]="type2" (ionChange)="searchChanged($event)">
-              <ion-select-option value="title">Title</ion-select-option>
-                <ion-select-option value="author">Author</ion-select-option>
+            <ion-label position="floating">Filter By 3</ion-label>
+            <ion-select  [(ngModel)]="type3" (ionChange)="searchChanged($event)">
+              <ion-select-option value="Title">Title</ion-select-option>
+                <ion-select-option value="Author">Author</ion-select-option>
                 <ion-select-option value="ISBN">ISBN</ion-select-option>
                 <ion-select-option value="ISSN">ISSN</ion-select-option>
-                <ion-select-option value="subject">Subject</ion-select-option>
-                <ion-select-option value="call Number">Call Number</ion-select-option>
-                <ion-select-option value="series">Series</ion-select-option>
+                <ion-select-option value="Subject">Subject</ion-select-option>
+                <ion-select-option value="CallNumber">Call Number</ion-select-option>
+                <ion-select-option value="Series">Series</ion-select-option>
               </ion-select>
           </ion-item>
         </ion-col>
-        <ion-searchbar showCancelButton="focus" cancelButtonText="Cancel" [(ngModel)]="searchField2" (ionChange)="searchChanged($event)"></ion-searchbar>
-      </ion-row>
+        <ion-searchbar showCancelButton="focus" cancelButtonText="Cancel" [(ngModel)]="searchField3" (ionChange)="searchChanged($event)"></ion-searchbar>
+      </ion-row> -->
     </ion-grid>
 
     <ion-grid class="ion-text-center" >
@@ -78,19 +164,21 @@
        </ion-row>
     </ion-grid>
   </form>
+  </div>
 
   <ion-list>
  
     <ion-item button *ngFor="let item of (results | async)" [routerLink]="['./', 'opac-result', item.citedworkId]">
       <ion-thumbnail slot="start">
-        <img src="../../../assets/images/book5.jpg">
+        <img *ngIf="item.imagepath else null" src={{item.imagepath}} />                
+        <!-- <img src="../../../assets/images/book5.jpg"> -->
       </ion-thumbnail>
  
       <ion-label text-wrap>
-        {{ item.title.substring(2) }}
-        <h3>{{ item.author.substring(2) }}</h3>
+        {{ item.title }}
+        <h3>{{ item.author }}</h3>
       </ion-label>
- 
+
  
     </ion-item>
  

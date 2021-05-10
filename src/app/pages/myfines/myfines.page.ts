@@ -11,6 +11,7 @@ import { ToastService } from 'src/app/services/toast.service';
 })
 export class MyfinesPage implements OnInit {
   public authUser: any;
+  badRequest = false;
   postData = {
     token: ''
   };
@@ -42,7 +43,8 @@ export class MyfinesPage implements OnInit {
           this.myfinesService.changeFinesData(res);
         },
         (error: any) => {
-          this.toastService.presentToast('Loading...');
+          this.badRequest = true;
+          // this.toastService.presentToast('Please wait...');
         }
       );
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MyfinesService } from 'src/app/services/myfines.service';
 
 @Component({
@@ -7,6 +7,7 @@ import { MyfinesService } from 'src/app/services/myfines.service';
   styleUrls: ['./fines-card.component.scss'],
 })
 export class FinesCardComponent implements OnInit {
+  @Input() loginUser: any;
   finesData: any;
 
   constructor(private myfinesService: MyfinesService) { }

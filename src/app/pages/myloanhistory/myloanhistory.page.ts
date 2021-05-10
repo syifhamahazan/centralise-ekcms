@@ -11,6 +11,7 @@ import { ToastService } from 'src/app/services/toast.service';
   styleUrls: ['./myloanhistory.page.scss'],
 })
 export class MyloanhistoryPage implements OnInit {
+  badRequest = false;
   public authUser: any;
   postData = {
     token: ''
@@ -44,7 +45,8 @@ export class MyloanhistoryPage implements OnInit {
           this.loanhistService.changeloanhistData(res);
         },
         (error: any) => {
-          this.toastService.presentToast('Loading...');
+          this.badRequest = true;
+          // this.toastService.presentToast('Please wait...');
         }
       );
 

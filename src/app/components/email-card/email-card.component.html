@@ -1,0 +1,31 @@
+<ion-card *ngFor="let em of emailsData" >
+  <ion-card-header>
+    <ion-row class="ion-align-items-center">
+      <ion-col size="6">
+        <ion-badge color="Light-shade" mode="ios">
+          <ion-icon name="bookmark-outline"></ion-icon>
+          {{em.emailSubject}}
+        </ion-badge>
+      </ion-col>
+      <ion-col size="6" class="ion-text-right">
+        <ion-card-subtitle color="success" *ngIf="em.statusValues == 0">Pending</ion-card-subtitle>
+        <ion-card-subtitle color="success" *ngIf="em.statusValues == 1">Sending</ion-card-subtitle>
+        <ion-card-subtitle color="success" *ngIf="em.statusValues == 2">Success</ion-card-subtitle>
+        <ion-card-subtitle *ngIf="em.statusValues == 'null'"  color="success">Failed</ion-card-subtitle>
+      </ion-col>
+    </ion-row>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-row>
+      <ion-col size="8">
+        <ion-card-title>{{em.patronAccessionNo}}</ion-card-title>
+        <h5>{{em.recipientMail}}</h5>
+      </ion-col>
+      <ion-col size="4">
+        <ion-card-subtitle>{{em.dateSent}}</ion-card-subtitle>
+      </ion-col>
+    </ion-row>
+  </ion-card-content>
+
+</ion-card>

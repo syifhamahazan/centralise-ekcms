@@ -12,6 +12,7 @@ const { Browser } = Plugins;
   styleUrls: ['./myprofile.page.scss'],
 })
 export class MyprofilePage implements OnInit {
+  profileUser: any;
   public authUser: any;
   postData = {
     token: ''
@@ -44,16 +45,17 @@ getProfile(token: any){
         console.log('Profile response');
         console.log(res);
         this.profileService.changeProfileData(res);
+        this.profileUser = res;
       },
       (error: any) => {
-        this.toastService.presentToast('Loading...');
+        this.toastService.presentToast('Please wait...');
       }
     );
 
 }
 
 changePwd(){
-  Browser.open({ url: 'http://library.kuis.edu.my/Home/ForgotPassword' });
+  Browser.open({ url: 'https://pustaka.upsi.edu.my/Home/ForgotPassword' });
 }
 
 editprofile(){

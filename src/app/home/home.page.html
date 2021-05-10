@@ -30,10 +30,12 @@
   <ion-menu side="start" menuId="main-menu" contentId="main">
     <ion-content>
       <div class="menu-header-bg"></div>
-      <div class="header-content">
-        <img src="../../assets/images/potrait.png" alt="" (click)="myprofile()">
+      <div class="header-content" *ngFor="let profile of profileUser; first as isFirst">
+        <img src="{{profile.patronImage}}" alt="" (click)="myprofile()">
+        <!-- <img #null src="../../assets/images/potrait.png" alt="" (click)="myprofile()"> -->
         <ion-label>
-          <h2>My Profile</h2>
+          <h2>{{profile.accessionNo}}</h2>
+          <p>{{profile.firstName}}</p>
         </ion-label>
       </div>
       
@@ -42,13 +44,13 @@
       <ion-icon name="search-circle" ></ion-icon>Search
     </ion-item>
     <ion-item (click)="mywishlist()">
-      <ion-icon name="list-circle"></ion-icon>My Wishlist
+      <ion-icon name="list-circle"></ion-icon>My Wish List
+    </ion-item>
+    <ion-item (click)="myemails()">
+      <ion-icon name="mail"></ion-icon>My Emails
     </ion-item>
     <ion-item (click)="myloan()">
       <ion-icon name="wallet-outline"></ion-icon>My Loan/Renew
-    </ion-item>
-    <ion-item (click)="myfines()">
-      <ion-icon name="cash-outline"></ion-icon>My Fines
     </ion-item>
     <ion-item (click)="myloanhist()">
       <ion-icon name="file-tray-full"></ion-icon>My Loan History
@@ -59,6 +61,9 @@
     <ion-item (click)="myoverdues()">
       <ion-icon name="today"></ion-icon>My Overdues
     </ion-item>
+    <ion-item (click)="myfines()">
+      <ion-icon name="cash-outline"></ion-icon>My Fines
+    </ion-item>
     <ion-item (click)="mysearchhist()">
       <ion-icon name="library"></ion-icon>My Search History
     </ion-item>
@@ -68,5 +73,6 @@
   </ion-list>
   <ion-router-outlet id="main"></ion-router-outlet>
   </ion-content>
-        <img src="../../assets/images/ekcms.png" class="logo-menu" width="80px" style="display:inline-block" height="40px" />
+  <div><img src="../../assets/images/ekcms-logo.png" class="logo-menu" width="80px" style="display:inline-block" height="30px" (click)="about()" >
+    <sup width="80px">Ver 1.0</sup></div>
   </ion-menu> 

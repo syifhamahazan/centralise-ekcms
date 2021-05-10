@@ -1,5 +1,10 @@
 <div class="order-items" *ngFor="let wl of wishlistData; let i = index">
   <ion-card mode="ios">
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
+        refreshingText="Refreshing...">
+      </ion-refresher-content>
+    </ion-refresher>
     <ion-card-content>
       <div class="address">
         <ion-item lines="none">
@@ -15,16 +20,16 @@
           <ion-label text-wrap slot="end" class="ion-text-right">{{wl.author}}</ion-label>
         </ion-item>
         <ion-item lines="none">
-          <ion-label>Edition</ion-label>
-          <ion-label slot="end" class="ion-text-right"></ion-label>
-        </ion-item>
-        <ion-item lines="none">
           <ion-label>Publisher</ion-label>
           <ion-label text-wrap slot="end" class="ion-text-right">{{wl.publisher}}</ion-label>
         </ion-item>
         <ion-item lines="none">
-          <ion-label>Created Date</ion-label>
-          <ion-label slot="end" class="ion-text-right">{{wl.publishDate}}</ion-label>
+          <ion-label>Edition</ion-label>
+          <ion-label slot="end" class="ion-text-right">{{wl.edition}}</ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label text-wrap>Created Date</ion-label>
+          <ion-label text-wrap slot="end" class="ion-text-right">{{wl.publishDate}}</ion-label>
         </ion-item>
         <ion-item lines="none">
           <ion-label>ISBN/ISSN</ion-label>
@@ -34,9 +39,17 @@
           <ion-label>Quantity</ion-label>
           <ion-label slot="end" class="ion-text-right">{{wl.quantity}}</ion-label>
         </ion-item>
+        <!-- <ion-item lines="none">
+          <ion-label text-wrap>Referrer/ Lecturer</ion-label>
+          <ion-label text-wrap slot="end" class="ion-text-right">{{wl.referrerLecturer}}</ion-label>
+        </ion-item> -->
         <ion-item lines="none">
           <ion-label>Comment</ion-label>
-          <ion-label text-wrap slot="end" class="ion-text-right"></ion-label>
+          <ion-label text-wrap slot="end" class="ion-text-right">{{wl.comment}}</ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label>Remarks</ion-label>
+          <ion-label text-wrap slot="end" class="ion-text-right">{{wl.remarks}}</ion-label>
         </ion-item>
         <ion-item lines="none">
           <ion-label>Status</ion-label>

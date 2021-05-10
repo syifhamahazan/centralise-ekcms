@@ -9,5 +9,10 @@
     <h1>My Search History</h1>
     <!-- <ion-button expand="block" color="tertiary">Make a request</ion-button> -->
   </div>
-  <app-searchist-card></app-searchist-card>
+  <app-searchist-card [loginUser]="authUser"></app-searchist-card>
+  <ion-card-content *ngIf="badRequest">
+    <ion-item lines="none">
+      <ion-label>No data available.</ion-label>
+    </ion-item>
+  </ion-card-content>
 </ion-content>

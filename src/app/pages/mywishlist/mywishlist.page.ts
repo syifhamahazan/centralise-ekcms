@@ -13,6 +13,7 @@ import { ToastService } from 'src/app/services/toast.service';
 })
 export class MywishlistPage implements OnInit {
   public authUser: any;
+  badRequest = false;
   postData = {
     token: ''
   };
@@ -47,7 +48,9 @@ export class MywishlistPage implements OnInit {
           this.wishlistService.changeWishlistData(res);
         },
         (error: any) => {
-          this.toastService.presentToast('Loading...');
+          // this.toastService.presentToast('Please wait...');
+          this.badRequest = true;
+          console.log('Bad request');
         }
       );
 

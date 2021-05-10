@@ -1,16 +1,20 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 import { HttpService } from './http.service';
+import { ToastService } from './toast.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MywishlistService {
-  url = 'http://192.168.100.101:8081/api/wishlist';
+  url =  environment.apiUrl + 'api/Wishlist/GetAllWishlist';
 
   wishlistData$ = new BehaviorSubject<any>([]);
-  constructor(private httpService: HttpService, private http: HttpClient) { }
+  constructor(private httpService: HttpService, private http: HttpClient,
+              private toastService: ToastService) { }
+
 
   changeWishlistData(data: any) {
     this.wishlistData$.next(data);
@@ -32,13 +36,14 @@ export class MywishlistService {
 
   wishlistData(postData: any): Observable<any> {
     console.log('Get Wishlist');
-    return this.httpService.getWishlist('api/wishlist', postData);
+    this.toastService.presentToast('Gathering data. Please wait!');
+    return this.httpService.getWishlist('api/Wishlist/GetAllWishlist', postData);
   }
 
 // delete data from API
   cancelwishlistReq(postData: any): Observable<any> {
       console.log('Cancel Wishlist');
-      return this.httpService.delete('api/wishlist', postData);
+      return this.httpService.delete('api/Wishlist/GetAllWishlist', postData);
     }
 
 // get details wishlist data

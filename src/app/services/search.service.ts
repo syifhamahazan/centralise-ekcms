@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment.prod';
 
 
 // Typescript custom enum for search types (optional)
@@ -15,7 +16,7 @@ export enum SearchType {
   providedIn: 'root'
 })
 export class SearchService {
-  url = 'http://192.168.100.101:8081/api/Material';
+  url =  environment.apiUrl + '/api/Material/GetMaterialsById';
   constructor(private http: HttpClient) { }
 
 

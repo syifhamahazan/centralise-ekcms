@@ -16,15 +16,16 @@ import { SearchistCardComponent } from './searchist-card/searchist-card.componen
 import { FinesCardComponent } from './fines-card/fines-card.component';
 import { SearchresCardComponent } from './searchres-card/searchres-card.component';
 import { WishlistUpdateComponent } from './wishlist-update/wishlist-update.component';
+import { EmailCardComponent } from './email-card/email-card.component';
 
 @NgModule({
   declarations: [SlidesComponent, StartComponent, LogoComponent,
     LoanhistCardComponent, ReservationCardComponent, OverdueCardComponent, SearchresCardComponent,
-    ProfileCardComponent, WishlistCardComponent, LoanCardComponent, SearchistCardComponent, FinesCardComponent, 
-    WishlistUpdateComponent],
+    ProfileCardComponent, WishlistCardComponent, LoanCardComponent, SearchistCardComponent, FinesCardComponent,
+    WishlistUpdateComponent, EmailCardComponent],
   exports: [SlidesComponent, StartComponent, LogoComponent, LoanhistCardComponent, ReservationCardComponent, OverdueCardComponent,
    ProfileCardComponent, WishlistCardComponent, LoanCardComponent, SearchistCardComponent, FinesCardComponent, SearchresCardComponent,
-   WishlistUpdateComponent],
+   WishlistUpdateComponent, EmailCardComponent],
   imports: [
     CommonModule,
     FormsModule,

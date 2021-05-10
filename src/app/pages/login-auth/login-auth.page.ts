@@ -12,7 +12,7 @@ import { ToastService } from 'src/app/services/toast.service';
   styleUrls: ['./login-auth.page.scss'],
 })
 export class LoginAuthPage implements OnInit {
-  qty: any;
+  code: any;
   public postData = {
     grant_type: 'password',
     username: '',
@@ -48,8 +48,8 @@ export class LoginAuthPage implements OnInit {
   });
     setTimeout(() => {
         this.loading.dismiss();
-        console.log(this.qty);
-        if (this.qty === '011'){
+        console.log(this.code);
+        if (this.code === '010'){
           if (this.validateInputs){
             // tslint:disable-next-line: deprecation
             this.authService.login(this.postData).subscribe((res: any) => {
@@ -79,7 +79,7 @@ export class LoginAuthPage implements OnInit {
           this.toastService.presentToast('Authorization failed! Please try again.');
         }
 
-      }, 4000);
+      }, 6000);
 
    }
 

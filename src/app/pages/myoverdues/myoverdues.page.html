@@ -9,5 +9,10 @@
     <h1>My Overdue</h1>
     <!-- <ion-button expand="block" color="tertiary">Make a request</ion-button> -->
   </div>
-  <app-overdue-card></app-overdue-card>
+  <app-overdue-card [loginUser]="authUser"></app-overdue-card>
+  <ion-card-content *ngIf="badRequest">
+    <ion-item lines="none">
+      <ion-label>No data available.</ion-label>
+    </ion-item>
+  </ion-card-content>
 </ion-content>

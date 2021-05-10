@@ -9,6 +9,7 @@ import { ToastService } from 'src/app/services/toast.service';
   styleUrls: ['./myloanrenew.page.scss'],
 })
 export class MyloanrenewPage implements OnInit {
+  badRequest = false;
   public authUser: any;
   postData = {
     token: ''
@@ -42,7 +43,7 @@ export class MyloanrenewPage implements OnInit {
           this.loanService.changeLoanData(res);
         },
         (error: any) => {
-          this.toastService.presentToast('Loading...');
+          this.badRequest = true;
         }
       );
 

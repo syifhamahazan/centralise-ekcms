@@ -6,6 +6,9 @@ import { SearchAreaComponent } from 'src/app/modal/search-area/search-area.compo
 import { AuthService } from 'src/app/services/auth.service';
 import { OpacSearchService, SearchType } from 'src/app/services/opac-search.service';
 import { ToastService } from 'src/app/services/toast.service';
+import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
+import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer/ngx';
+import { FileOpener } from '@ionic-native/file-opener/ngx';
 
 @Component({
   selector: 'app-search',
@@ -13,12 +16,16 @@ import { ToastService } from 'src/app/services/toast.service';
   styleUrls: ['./search.page.scss'],
 })
 export class SearchPage implements OnInit {
+  show = true;
   public authUser: any;
   postData = {
     token: ''
   };
 
   results: Observable<any>;
+  metadata: Observable<any>;
+  repository: Observable<any>;
+
   // tslint:disable-next-line: no-inferrable-types
   searchTerm: string = '';
   type: SearchType = SearchType.title;
@@ -27,8 +34,14 @@ export class SearchPage implements OnInit {
     private router: Router,
     private modalCtrl: ModalController,
     private opacSearchService: OpacSearchService,
-    private toastService: ToastService) {
+    private toastService: ToastService,
+    private previewAnyFile: PreviewAnyFile,
+    private document: DocumentViewer,
+    private fileOpener: FileOpener) {
      }
+   options: DocumentViewerOptions = {
+      title: 'My PDF'
+    };
 
   ngOnInit() {
     // tslint:disable-next-line: deprecation
@@ -44,6 +57,8 @@ export class SearchPage implements OnInit {
     console.log('Token for search');
     console.log(this.authUser);
     this.results = this.opacSearchService.searchData(this.searchTerm, this.type, this.authUser);
+    this.metadata = this.opacSearchService.searchMetadata(this.searchTerm, this.type, this.authUser);
+    this.repository = this.opacSearchService.searchRepo(this.searchTerm, this.type, this.authUser);
     console.log(this.results);
   }
 
@@ -56,7 +71,7 @@ searchAction(){
  }
 
 advSearch(){
-  this.router.navigate(['./home/maintenance']);
+  this.router.navigate(['./home/advance-search']);
 }
 
 rbrSearch(){
@@ -80,6 +95,14 @@ rbrSearch(){
 //     );
 
 // }
+PreviewFile(path){
+  console.log(path);
+  // this.document.viewDocument(path, 'application/pdf', this.options);
+  this.previewAnyFile.preview(path)
+  .then((res: any) => console.log(res))
+  .catch((error: any) => console.error(error));
+  console.log(path);
+}
 
 async searchArea(){
   const modal = await this.modalCtrl.create({

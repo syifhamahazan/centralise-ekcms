@@ -9,7 +9,13 @@
     <h1>My Loan History</h1>
     <!-- <ion-button expand="block" color="tertiary">Make a request</ion-button> -->
   </div>
-  <app-loanhist-card></app-loanhist-card>
+  <app-loanhist-card [loginUser]="authUser"></app-loanhist-card>
+  <ion-card-content *ngIf="badRequest">
+    <ion-item lines="none">
+      <ion-label>No data available.</ion-label>
+    </ion-item>
+  </ion-card-content>
+
 
   
 </ion-content>

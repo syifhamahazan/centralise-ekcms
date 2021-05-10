@@ -29,6 +29,15 @@ export class WishlistCardComponent implements OnInit {
     });
   }
 
+  doRefresh(event) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
+  }
+
   removewlReq(wishlistId: any, wishlistIndex: number){
     this.postData.id = wishlistId;
     this.postData.token = this.loginUser;

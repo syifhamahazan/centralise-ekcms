@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { LoanhistService } from 'src/app/services/loanhist.service';
 
 @Component({
@@ -7,6 +7,7 @@ import { LoanhistService } from 'src/app/services/loanhist.service';
   styleUrls: ['./loanhist-card.component.scss'],
 })
 export class LoanhistCardComponent implements OnInit {
+  @Input() loginUser: any;
   loanhistData: any;
 
   constructor(private myloanhistService: LoanhistService) { }

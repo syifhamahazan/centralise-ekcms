@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpService } from './http.service';
+import { ToastService } from './toast.service';
 
 
 @Injectable({
@@ -9,7 +10,9 @@ import { HttpService } from './http.service';
 export class LoanhistService {
   loanhistData$ = new BehaviorSubject<any>([]);
 
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService,
+              private toastService: ToastService) { }
+
 
   changeloanhistData(data: any) {
     this.loanhistData$.next(data);
@@ -17,7 +20,8 @@ export class LoanhistService {
 
   loanhistData(postData: any): Observable<any> {
     console.log('Get Loan History');
-    return this.httpService.getWishlist('api/loanhistory', postData);
+    this.toastService.presentToast('Gathering data. Please wait!');
+    return this.httpService.getLoanhist('api/loanhistory/GetAllLoansHistory', postData);
   }
 
 }

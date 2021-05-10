@@ -8,5 +8,10 @@
   <div class="title ion-padding font-bold">
     <h1>My Fines</h1>
   </div>
-  <app-fines-card></app-fines-card>
+  <app-fines-card [loginUser]="authUser"></app-fines-card>
+  <ion-card-content *ngIf="badRequest">
+    <ion-item lines="none">
+      <ion-label>No data available.</ion-label>
+    </ion-item>
+  </ion-card-content>
 </ion-content>

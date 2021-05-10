@@ -31,9 +31,11 @@ ion-content {
 .title {
 
     font-size: xx-large;
-    h2 {
+    h1 {
         margin: 0 0 0 16px;
         color: #434343;
+        text-align: center;
+        padding-bottom: 10px;
     }
 
     // ion-button {

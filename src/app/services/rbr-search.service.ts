@@ -12,7 +12,7 @@ export enum SearchType {
   providedIn: 'root'
 })
 export class RbrSearchService {
-  url = 'http://192.168.100.101:8081/api/rbrsearch';
+  url = 'http://pustaka.upsi.edu.my:5003/api/rbrsearch';
 
 
   constructor(private http: HttpClient) { }

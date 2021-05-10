@@ -49,7 +49,7 @@ export class SearchResultPage implements OnInit {
           this.searchResService.changeSearchResultData(res);
         },
         (error: any) => {
-          this.toastService.presentToast('Loading...');
+          this.toastService.presentToast('Please wait...');
         }
       );
 

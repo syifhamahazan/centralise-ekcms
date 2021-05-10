@@ -8,6 +8,12 @@
   <div class="title ion-padding font-bold">
     <h1>My Reservation</h1>
     <!-- <ion-button expand="block" color="tertiary">Make a request</ion-button> -->
-    <app-reservation-card></app-reservation-card>
+    <app-reservation-card [loginUser]="authUser"></app-reservation-card>
+    <ion-card-content *ngIf="badRequest">
+      <ion-item lines="none">
+        <ion-label>No data available.</ion-label>
+      </ion-item>
+    </ion-card-content>
+  
   </div> 
 </ion-content>

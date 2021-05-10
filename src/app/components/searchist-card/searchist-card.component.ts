@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SearchhistService } from 'src/app/services/searchhist.service';
 
 @Component({
@@ -7,6 +7,7 @@ import { SearchhistService } from 'src/app/services/searchhist.service';
   styleUrls: ['./searchist-card.component.scss'],
 })
 export class SearchistCardComponent implements OnInit {
+  @Input() loginUser: any;
   searchhistData: any;
 
   constructor(private searchhistService: SearchhistService) { }

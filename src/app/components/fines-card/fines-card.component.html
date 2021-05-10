@@ -21,19 +21,19 @@
           </ion-item>
           <ion-item lines="none">
             <ion-label>Loan Date</ion-label>
-            <ion-label text-wrap slot="end" class="ion-text-right">{{fine.loanStartDate}}</ion-label>
+            <ion-label slot="end" class="ion-text-right">{{fine.loanStartDate}}</ion-label>
           </ion-item>
           <ion-item lines="none">
             <ion-label>Due Date</ion-label>
-            <ion-label text-wrap slot="end" class="ion-text-right">{{fine.loanDueDate}}</ion-label>
+            <ion-label slot="end" class="ion-text-right">{{fine.loanDueDate}}</ion-label>
           </ion-item>
           <ion-item lines="none">
-            <ion-label>Overdue Days</ion-label>
-            <ion-label text-wrap slot="end" class="ion-text-right">{{fine.balanceDays}} Days</ion-label>
+            <ion-label text-wrap>Overdue Days</ion-label>
+            <ion-label slot="end" class="ion-text-right">{{fine.balanceDays}} Days</ion-label>
           </ion-item>
           <ion-item lines="none">
             <ion-label>Fine</ion-label>
-            <ion-label text-wrap slot="end" class="ion-text-right">RM {{fine.amount}}</ion-label>
+            <ion-label slot="end" class="ion-text-right">{{fine.amount| currency : 'RM' }}</ion-label>
           </ion-item>
         </div>
 

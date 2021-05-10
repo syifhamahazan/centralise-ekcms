@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MyoverdueService } from 'src/app/services/myoverdue.service';
 
 @Component({
@@ -7,6 +7,7 @@ import { MyoverdueService } from 'src/app/services/myoverdue.service';
   styleUrls: ['./overdue-card.component.scss'],
 })
 export class OverdueCardComponent implements OnInit {
+  @Input() loginUser: any;
   overdueData: any;
   constructor(private myoverdueService: MyoverdueService ) {}
 

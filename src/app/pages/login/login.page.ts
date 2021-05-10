@@ -74,7 +74,7 @@ export class LoginPage implements OnInit {
 
     this.toastService.presentToast('Please give some information');
   }
-  }, 4000);
+  }, 6000);
 
   }
 

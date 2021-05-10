@@ -10,6 +10,7 @@ import { ToastService } from 'src/app/services/toast.service';
 })
 export class MyoverduesPage implements OnInit {
 
+  badRequest = false;
   public authUser: any;
   postData = {
     token: ''
@@ -42,7 +43,8 @@ export class MyoverduesPage implements OnInit {
           this.myoverdueService.changeoverdueData(res);
         },
         (error: any) => {
-          this.toastService.presentToast('Loading...');
+          this.badRequest = true;
+          // this.toastService.presentToast('Please wait...');
         }
       );
 

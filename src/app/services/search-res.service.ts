@@ -17,6 +17,6 @@ export class SearchResService {
 
   searchResData(postData: any): Observable<any>{
     console.log('Search Results is');
-    return this.httpService.getSearchRes('api/material', postData);
+    return this.httpService.getSearchRes('api/material/GetMaterialsById', postData);
   }
 }
