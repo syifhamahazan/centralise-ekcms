@@ -34,10 +34,10 @@ export class MywishlistService {
     this.changeWishlistData(newUpdatedWishlist);
   }
 
-  wishlistData(postData: any): Observable<any> {
+  wishlistData(postData: any, code: any): Observable<any> {
     console.log('Get Wishlist');
     this.toastService.presentToast('Gathering data. Please wait!');
-    return this.httpService.getWishlist('api/Wishlist/GetAllWishlist', postData);
+    return this.httpService.getWishlist('api/Wishlist/GetAllWishlist', postData, code);
   }
 
 // delete data from API

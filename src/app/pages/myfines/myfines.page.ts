@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { HomePage } from 'src/app/home/home.page';
 import { AuthService } from 'src/app/services/auth.service';
 import { MyfinesService } from 'src/app/services/myfines.service';
 import { ToastService } from 'src/app/services/toast.service';
@@ -19,7 +20,8 @@ export class MyfinesPage implements OnInit {
   constructor(
     private auth: AuthService,
     private myfinesService: MyfinesService,
-    private toastService: ToastService) { }
+    private toastService: ToastService,
+    private home : HomePage) { }
 
 
     ngOnInit() {
@@ -36,7 +38,7 @@ export class MyfinesPage implements OnInit {
     console.log('This is token');
     console.log(token);
     // tslint:disable-next-line: deprecation
-    this.myfinesService.finesData(token).subscribe(
+    this.myfinesService.finesData(token, this.home.homecode).subscribe(
         (res: any) => {
           console.log('Wishlist response');
           console.log(res);

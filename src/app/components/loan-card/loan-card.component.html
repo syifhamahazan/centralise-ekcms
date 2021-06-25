@@ -30,7 +30,7 @@
           </ion-item>
           <ion-item lines="none">
             <ion-label>Due Date</ion-label>
-            <ion-label slot="end" class="ion-text-right">{{loan.returnDate}}</ion-label>
+            <ion-label slot="end" class="ion-text-right">{{loan.dueOn}}</ion-label>
           </ion-item>
           <ion-item lines="none">
             <ion-label>Remarks</ion-label>
@@ -38,7 +38,8 @@
           </ion-item>
           <ion-item lines="none">
             <ion-label>Status</ion-label>
-            <ion-label slot="end" class="ion-text-right">{{loan.status}}</ion-label>
+            <ion-label slot="end" class="ion-text-right" *ngIf="loan.isOverdue == true">Overdue</ion-label>
+            <ion-label slot="end" class="ion-text-right" *ngIf="loan.isOverdue == false">Loaned</ion-label>
           </ion-item>
           <ion-item lines="none">
             <ion-label>Details</ion-label>
@@ -46,8 +47,8 @@
           </ion-item>
         </div>
 
-          <ion-button expand="block" *ngIf="loan.canRenew == true" color="warning" [class.button-disabled]="false"  (click)="renewAlert(loan, i)" expand="block">Renew</ion-button>
-          <ion-button expand="block" *ngIf="loan.canRenew == false" color="warning" [class.button-disabled]="true" >Renew</ion-button>
+          <ion-button expand="block" *ngIf="loan.isOverdue == false && ( loan.renewDetails != '1 / 1' && loan.renewDetails != '2 / 2' && loan.renewDetails != '3 / 3' && loan.renewDetails != '4 / 4' && loan.renewDetails != '5 / 5')" color="warning" (click)="renewAlert(loan, i)" expand="block">Renew</ion-button>
+          <!-- <ion-button expand="block" *ngIf="loan.canRenew == false" color="warning" [class.button-disabled]="true" >Renew</ion-button> -->
       </ion-card-content>
     </ion-card>
     

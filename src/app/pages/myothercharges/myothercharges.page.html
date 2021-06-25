@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-button contentId="main" slot="start"><ion-icon src="../../../assets/icon/menucircle.svg"></ion-icon></ion-menu-button>      
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="title ion-padding font-bold">
+    <h1>My Other Charges</h1>
+  </div>
+  <app-otherchargescard [loginUser]="authUser"></app-otherchargescard>
+  <ion-card-content *ngIf="badRequest">
+    <ion-item lines="none">
+      <ion-label>No data available.</ion-label>
+    </ion-item>
+  </ion-card-content>
+</ion-content>

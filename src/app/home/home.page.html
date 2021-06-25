@@ -39,14 +39,17 @@
         </ion-label>
       </div>
       
-  <ion-list class="menu-items" lines="none">
+  <ion-list class="menu-items" lines="none" *ngFor="let profile of profileUser; first as isFirst">
     <ion-item (click)="serachField()">
       <ion-icon name="search-circle" ></ion-icon>Search
+    </ion-item>
+    <ion-item (click)="eresources(profile.username)" *ngIf="homecode == '020'">
+      <ion-icon name="server" ></ion-icon>E-resources
     </ion-item>
     <ion-item (click)="mywishlist()">
       <ion-icon name="list-circle"></ion-icon>My Wish List
     </ion-item>
-    <ion-item (click)="myemails()">
+    <ion-item (click)="myemails()" *ngIf="homecode == '010' || homecode == '023' ">
       <ion-icon name="mail"></ion-icon>My Emails
     </ion-item>
     <ion-item (click)="myloan()">
@@ -61,11 +64,14 @@
     <ion-item (click)="myoverdues()">
       <ion-icon name="today"></ion-icon>My Overdues
     </ion-item>
-    <ion-item (click)="myfines()">
+    <ion-item (click)="myfines()" *ngIf="homecode == '010' || homecode =='023' || homecode =='025' || homecode =='011'">
       <ion-icon name="cash-outline"></ion-icon>My Fines
     </ion-item>
     <ion-item (click)="mysearchhist()">
       <ion-icon name="library"></ion-icon>My Search History
+    </ion-item>
+    <ion-item (click)="myothercharges()" *ngIf="homecode == '023'">
+      <ion-icon name="clipboard"></ion-icon>My Other Charges
     </ion-item>
     <ion-item (click)="logoutAction()">
       <ion-icon name="log-out"></ion-icon>Logout

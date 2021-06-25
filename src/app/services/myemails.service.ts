@@ -15,10 +15,10 @@ export class MyemailsService {
     this.emailsData$.next(data);
   }
 
-  emailsData(postData: any): Observable<any> {
+  emailsData(postData: any, code: any): Observable<any> {
     console.log('Get Email');
     this.toastService.presentToast('Gathering data. Please wait!');
-    return this.httpService.getEmails('api/email/GetAllEmail', postData);
+    return this.httpService.getEmails('api/email/GetAllEmail', postData, code);
   }
 
 }

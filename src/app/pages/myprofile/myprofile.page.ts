@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { MyprofileService } from 'src/app/services/myprofile.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { Plugins } from '@capacitor/core';
+import { HomePage } from 'src/app/home/home.page';
 const { Browser } = Plugins;
 
 @Component({
@@ -22,7 +23,8 @@ export class MyprofilePage implements OnInit {
     private router: Router,
     private auth: AuthService,
     private profileService: MyprofileService,
-    private toastService: ToastService) { }
+    private toastService: ToastService,
+    private home: HomePage) { }
 
   ngOnInit() {
     // tslint:disable-next-line: deprecation
@@ -40,7 +42,7 @@ getProfile(token: any){
   console.log('This is token');
   console.log(token);
   // tslint:disable-next-line: deprecation
-  this.profileService.profileData(token).subscribe(
+  this.profileService.profileData(token, this.home.homecode).subscribe(
       (res: any) => {
         console.log('Profile response');
         console.log(res);

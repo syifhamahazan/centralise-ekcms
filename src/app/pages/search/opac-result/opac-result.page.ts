@@ -5,6 +5,7 @@ import { OpacSearchService } from 'src/app/services/opac-search.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { HttpClient} from '@angular/common/http';
 import { environment } from 'src/environments/environment.prod';
+import { HomePage } from 'src/app/home/home.page';
 
 @Component({
   selector: 'app-opac-result',
@@ -12,12 +13,14 @@ import { environment } from 'src/environments/environment.prod';
   styleUrls: ['./opac-result.page.scss'],
 })
 export class OpacResultPage implements OnInit {
+  homecode: any;
+
   public authUser: any;
   badRequest = false;
   postData = {
     token: ''
   };
-
+  detailscode: any;
   information = null;
 
   constructor(
@@ -26,21 +29,23 @@ export class OpacResultPage implements OnInit {
     private router: Router,
     private opacSearchService: OpacSearchService,
     private toastService: ToastService,
-    private http: HttpClient) { }
+    private http: HttpClient,
+    private home: HomePage) { }
 
 
   ngOnInit() {
-    // tslint:disable-next-line: deprecation
     this.auth.userData$.subscribe((res: any) => {
       this.authUser = res;
       console.log('Inside get user token');
       const cwId = this.activatedRoute.snapshot.paramMap.get('citedworkId');
 
     // tslint:disable-next-line: deprecation
-      this.opacSearchService.getDetails(cwId, this.authUser).subscribe(result => {
+      this.opacSearchService.getDetails(cwId, this.authUser, this.home.homecode).subscribe(result => {
       this.information = result;
       console.log('Inside get book details');
       console.log(this.information);
+      this.homecode = this.home.homecode;
+      console.log('This is app for ' + this.homecode);
     },
         (error: any) => {
           this.toastService.presentToast('Please wait...');

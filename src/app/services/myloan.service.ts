@@ -15,10 +15,10 @@ export class MyloanService {
     this.loanData$.next(data);
   }
 
-  loanData(postData: any): Observable<any> {
+  loanData(postData: any, code:any): Observable<any> {
     console.log('Get Loan');
     this.toastService.presentToast('Gathering data. Please wait!');
-    return this.httpService.getLoan('api/loan/GetAllLoans', postData);
+    return this.httpService.getLoan('api/loan/GetAllLoans', postData, code);
   }
 
 

@@ -16,10 +16,10 @@ export class SearchhistService {
     this.searchhistData$.next(data);
   }
 
-  searchhistData(postData: any): Observable<any>{
+  searchhistData(postData: any, code: any): Observable<any>{
     this.toastService.presentToast('Gathering data. Please wait!');
     console.log(postData);
-    return this.httpService.getSearchhist('api/searchhistory/GetAllHistory', postData);
+    return this.httpService.getSearchhist('api/searchhistory/GetAllHistory', postData, code);
   }
 
 }

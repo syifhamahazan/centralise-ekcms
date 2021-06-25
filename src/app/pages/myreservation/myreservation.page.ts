@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { HomePage } from 'src/app/home/home.page';
 import { AuthService } from 'src/app/services/auth.service';
 import { MyreservationService } from 'src/app/services/myreservation.service';
 import { ToastService } from 'src/app/services/toast.service';
@@ -18,7 +19,8 @@ export class MyreservationPage implements OnInit {
   constructor(
     private auth: AuthService,
     private reservationService: MyreservationService,
-    private toastService: ToastService) { }
+    private toastService: ToastService,
+    private home: HomePage) { }
 
 
   ngOnInit() {
@@ -36,7 +38,7 @@ export class MyreservationPage implements OnInit {
     console.log('This is token');
     console.log(token);
     // tslint:disable-next-line: deprecation
-    this.reservationService.reservationData(token).subscribe(
+    this.reservationService.reservationData(token, this.home.homecode).subscribe(
         (res: any) => {
           console.log('Reservation response');
           console.log(res);

@@ -313,9 +313,9 @@
 
           </ion-grid>
            <!-- Disable for 010 and 011 -->
-          <!-- <div class="button-container">
-            <ion-button *ngIf="inf.status == 1 " expand="block" (click)="reserveAction(inf, i)" class="main-button">Reserve</ion-button>
-          </div> -->
+          <div class="button-container">
+            <ion-button *ngIf="(inf.status == 1  && homecode == '020') || (inf.status == 1 && homecode == '023') || (inf.status == 3  && homecode == '020') || (inf.status == 3  && homecode == '023') || (inf.status == 9  && homecode == '023') " expand="block" (click)="reserveAction(inf, i)" class="main-button">Reserve</ion-button>
+          </div>
           
           <ion-item-divider></ion-item-divider>
           

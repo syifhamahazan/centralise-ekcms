@@ -7,10 +7,12 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./logout.page.scss'],
 })
 export class LogoutPage implements OnInit {
-
+  logoutcode: any;
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    this.logoutcode = this.authService.authcode;
+    console.log('Logout with code ' + this.logoutcode);
   }
 
   logoutAction(){

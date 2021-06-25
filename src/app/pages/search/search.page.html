@@ -3,7 +3,12 @@
       <ion-menu-button contentId="main" slot="start"><ion-icon src="../../../assets/icon/menucircle.svg"></ion-icon></ion-menu-button>      
   </ion-toolbar>
 <div class="ion-text-center web-opac">  
-  <img src="../../../assets/images/upsi-logo.png"/>
+  <img  *ngIf="searchcode == '010'" src="../../../assets/images/upsi-logo.png"/>
+  <img  *ngIf="searchcode == '011'" src="../../../assets/images/kuis-logo.png"/>
+  <img  *ngIf="searchcode == '020'" src="../../../assets/images/sc_logo.png"/>
+  <img  *ngIf="searchcode == '023'" src="../../../assets/images/mbsa-logo.png"/>
+  <img  *ngIf="searchcode == '025'" src="../../../assets/images/upsi-logo.png"/>
+
   <h5 class="ion-text-center" color="ekcms">WEB OPAC SEARCH</h5>
 </div>
 
@@ -20,9 +25,9 @@
           <ion-select-option value="subject">Subject</ion-select-option>
           <ion-select-option value="callnumber">Call Number</ion-select-option>
           <ion-select-option value="series">Series</ion-select-option>
-          <ion-select-option value="summary">Summary</ion-select-option>
-          <ion-select-option value="language">Language</ion-select-option>
-          <ion-select-option value="dissertationnote">Dissertation Note</ion-select-option>
+          <ion-select-option value="summary" *ngIf="searchcode == '010' || searchcode == '023'">Summary</ion-select-option>
+          <ion-select-option value="language" *ngIf="searchcode == '010' || searchcode == '023'">Language</ion-select-option>
+          <ion-select-option value="dissertationnote" *ngIf="searchcode == '010' || searchcode == '023'">Dissertation Note</ion-select-option>
         </ion-select>
     
     </ion-item>
@@ -65,10 +70,13 @@
       <ion-segment-button value="catalogue">
          Catalogue
       </ion-segment-button>
-      <ion-segment-button value="metadata">
-         Metadata
+      <ion-segment-button value="metadata" *ngIf="searchcode == '020'">
+         Repository
       </ion-segment-button>
-      <ion-segment-button value="repository">
+      <ion-segment-button value="metadata" *ngIf="searchcode != '020' && searchcode != '010'">
+        Metadata
+     </ion-segment-button>
+      <ion-segment-button value="repository" *ngIf="searchcode != '020' && searchcode != '010'">
         Repository
       </ion-segment-button>
       
@@ -107,7 +115,7 @@
               <ion-item button *ngFor="let item of (metadata | async)" (click)="PreviewFile(item.filepath)">
                 <ion-thumbnail slot="start">
                   <img *ngIf="item.imagepath else null" src={{item.imagepath}} />                
-                  <img #null src="../../../assets/images/no_img.jpg" />
+                  <!-- <img #null src="../../../assets/images/no_img.jpg" /> -->
                 </ion-thumbnail>
            
                 <ion-label text-wrap>

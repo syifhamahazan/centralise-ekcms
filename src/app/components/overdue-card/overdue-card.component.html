@@ -30,7 +30,7 @@
           <ion-label>Overdue Days</ion-label>
           <ion-label slot="end" class="ion-text-right">{{od.balanceDays}}</ion-label>
         </ion-item>
-        <ion-item lines="none">
+        <ion-item lines="none" *ngIf="homecode != '020'">
           <ion-label>Fine</ion-label>
           <ion-label slot="end" class="ion-text-right">{{od.amount| currency : 'RM'}}</ion-label>
         </ion-item>

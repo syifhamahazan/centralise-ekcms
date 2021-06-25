@@ -21,10 +21,10 @@ export class MyoverdueService {
     this.overdueData$.next(data);
   }
 
-  overdueData(postData: any): Observable<any> {
+  overdueData(postData: any, code: any): Observable<any> {
     console.log('Get Overdue');
     this.toastService.presentToast('Gathering data. Please wait!');
-    return this.httpService.getOverdue('api/OverDue/GetAllOverDue', postData);
+    return this.httpService.getOverdue('api/OverDue/GetAllOverDue', postData, code);
   }
 
 }

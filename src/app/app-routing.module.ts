@@ -74,10 +74,20 @@ const routes: Routes = [
   {
     path: 'maintenance',
     loadChildren: () => import('./pages/maintenance/maintenance.module').then( m => m.MaintenancePageModule)
-  },  {
+  },
+  {
     path: 'about',
     loadChildren: () => import('./pages/about/about.module').then( m => m.AboutPageModule)
+  },
+  {
+    path: 'myothercharges',
+    loadChildren: () => import('./pages/myothercharges/myothercharges.module').then( m => m.MyotherchargesPageModule)
+  },
+  {
+    path: 'myothercharges',
+    loadChildren: () => import('./pages/myothercharges/myothercharges.module').then( m => m.MyotherchargesPageModule)
   }
+
 
 
 

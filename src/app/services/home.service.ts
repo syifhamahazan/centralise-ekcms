@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { HomePage } from '../home/home.page';
 import { HttpService } from './http.service';
 
 @Injectable({
@@ -7,7 +8,7 @@ import { HttpService } from './http.service';
 })
 export class HomeService {
 
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService, private home: HomePage) { }
 
   homeData(postData: any): Observable<any>{
     return this.httpService.post('api', postData);
@@ -16,6 +17,6 @@ export class HomeService {
   profileData(postData: any): Observable<any>{
     console.log('Postdata is');
     console.log(postData);
-    return this.httpService.getProfile('api/patron/GetAllPatrons', postData);
+    return this.httpService.getProfile('api/patron/GetAllPatrons', postData, this.home.homecode);
   }
 }

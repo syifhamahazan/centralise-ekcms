@@ -25,19 +25,40 @@ export enum SearchType {
   providedIn: 'root'
 })
 export class OpacSearchService {
-
-  url = environment.apiUrl + '/api/Material/GetMaterialsById';
-  opacurl =  environment.apiUrl + '/api/material/GetMaterialDetails';
-  urlmetadata =  environment.apiUrl + '/api/Metadata/GetMaterialsById';
-  urlrepo =  environment.apiUrl + '/api/Econtent/GetMaterialsById';
+  url: any;
+  apiUrl: any;
+  urlmetadata: any;
+  urlrepo: any;
+  opacurl: any;
 
   constructor(
     private http: HttpClient,
-    private toastService: ToastService,
+    private toastService: ToastService
     ) { }
 
 
-  searchData(title: string, type: SearchType, token): Observable<any> {
+  searchData(title: string, type: SearchType, token, code: any): Observable<any> {
+    if ( code === '010'){
+      this.apiUrl = environment.upsiUrl ;
+    }
+    else if (code === '011') {
+      this.apiUrl = environment.kuisUrl ;
+   }
+
+   else if (code === '020') {
+    this.apiUrl = environment.scUrl ;
+  }
+
+   else if (code === '023') {
+    this.apiUrl = environment.mbsaUrl ;
+  }
+
+   else if (code === '025') {
+    this.apiUrl = environment.apiUrl ;
+  }
+
+
+    this.url = this.apiUrl + '/api/Material/GetMaterialsById';
 
     const headerDict = {
       'Access-Control-Allow-Origin': '*',
@@ -60,7 +81,7 @@ export class OpacSearchService {
     );
   }
 
-  searchMetadata(title: string, type: SearchType, token): Observable<any> {
+  searchMetadata(title: string, type: SearchType, token, code: any): Observable<any> {
 
     const headerDict = {
       'Access-Control-Allow-Origin': '*',
@@ -73,6 +94,28 @@ export class OpacSearchService {
     const requestOptions = {
       headers: new HttpHeaders(headerDict)
     };
+    if ( code === '010'){
+      this.apiUrl = environment.upsiUrl ;
+    }
+    else if (code === '011') {
+      this.apiUrl = environment.kuisUrl ;
+   }
+
+   else if (code === '020') {
+    this.apiUrl = environment.scUrl ;
+  }
+
+   else if (code === '023') {
+    this.apiUrl = environment.mbsaUrl ;
+  }
+
+   else if (code === '025') {
+    this.apiUrl = environment.apiUrl ;
+  }
+
+
+    this.urlmetadata =  this.apiUrl + 'api/Metadata/GetMetadataById';
+
     return this.http.get(`${this.urlmetadata}?searchfield=${encodeURI(title)}&searchtype=${type}`, requestOptions).pipe(
       map(results => results),
       catchError(err => {
@@ -82,7 +125,7 @@ export class OpacSearchService {
     );
   }
 
-  searchRepo(title: string, type: SearchType, token): Observable<any> {
+  searchRepo(title: string, type: SearchType, token, code: any): Observable<any> {
 
     const headerDict = {
       'Access-Control-Allow-Origin': '*',
@@ -95,6 +138,27 @@ export class OpacSearchService {
     const requestOptions = {
       headers: new HttpHeaders(headerDict)
     };
+    if ( code === '010'){
+      this.apiUrl = environment.upsiUrl ;
+    }
+    else if (code === '011') {
+      this.apiUrl = environment.kuisUrl ;
+   }
+
+   else if (code === '020') {
+    this.apiUrl = environment.scUrl ;
+  }
+
+   else if (code === '023') {
+    this.apiUrl = environment.mbsaUrl ;
+  }
+
+   else if (code === '025') {
+    this.apiUrl = environment.apiUrl ;
+  }
+
+    this.urlrepo =  this.apiUrl + '/api/Econtent/GetMaterialsById';
+
     return this.http.get(`${this.urlrepo}?searchfield=${encodeURI(title)}&searchtype=${type}`, requestOptions).pipe(
       map(results => results),
       catchError(err => {
@@ -106,7 +170,7 @@ export class OpacSearchService {
 
 
 
-  getDetails(cwId, token) {
+  getDetails(cwId, token, code) {
     const headerDict = {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
@@ -114,7 +178,26 @@ export class OpacSearchService {
       'Content-Type': 'application/json',
       Authorization: 'Bearer ' + token
     };
+    if ( code === '010'){
+      this.apiUrl = environment.upsiUrl ;
+    }
+    else if (code === '011') {
+      this.apiUrl = environment.kuisUrl ;
+   }
 
+   else if (code === '020') {
+    this.apiUrl = environment.scUrl ;
+  }
+
+   else if (code === '023') {
+    this.apiUrl = environment.mbsaUrl ;
+  }
+
+   else if (code === '025') {
+    this.apiUrl = environment.apiUrl ;
+  }
+
+    this.opacurl =  this.apiUrl + '/api/material/GetMaterialDetails';
     const requestOptions = {
       headers: new HttpHeaders(headerDict)
     };

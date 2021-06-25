@@ -1,0 +1,38 @@
+<ion-card *ngFor="let oc of otherChargesData; let i=index ;" >
+  <div class="order-items">
+    <ion-card mode="ios">
+      <!-- <ion-card-content *ngIf="loan == 'No Data'">
+        <ion-item lines="none">
+          <ion-label>No data available.</ion-label>
+        </ion-item>
+      </ion-card-content> -->
+      <ion-card-content >
+      
+        <div class="cart-total">
+          <ion-item lines="none">
+            <ion-label>Type</ion-label>
+            <ion-label text-wrap slot="end" class="ion-text-right">{{oc.transactionType}}</ion-label>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label>Remarks</ion-label>
+            <ion-label text-wrap slot="end" class="ion-text-right">{{oc.category }}</ion-label>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label>Status</ion-label>
+            <ion-label slot="end" class="ion-text-right">{{oc.transactionStatus}}</ion-label>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label>Created Date</ion-label>
+            <ion-label slot="end" class="ion-text-right">{{oc.loanStartDate}}</ion-label>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label>Amount</ion-label>
+            <ion-label slot="end" class="ion-text-right">{{oc.amount| currency : 'RM'}}</ion-label>
+          </ion-item>
+        </div>
+      </ion-card-content>
+    </ion-card>
+    
+  </div>
+  
+</ion-card>

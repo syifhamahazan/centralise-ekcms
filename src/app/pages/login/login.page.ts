@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { LoadingController, NavController } from '@ionic/angular';
 import { AuthConstants } from 'src/app/config/auth-constants';
 import { AuthService } from 'src/app/services/auth.service';
+import { HttpService } from 'src/app/services/http.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { ToastService } from 'src/app/services/toast.service';
 
@@ -12,6 +13,7 @@ import { ToastService } from 'src/app/services/toast.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  logincode: any;
   public postData = {
     grant_type: 'password',
     username: '',
@@ -26,10 +28,13 @@ export class LoginPage implements OnInit {
     private storageService: StorageService,
     private toastService: ToastService,
     private navCtrl: NavController,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private http: HttpService
     ) { }
 
   ngOnInit() {
+    this.logincode = this.authService.authcode;
+    console.log('This is login for codeeeeeee ' + this.logincode);
   }
 
   // Trim the input postData
@@ -51,7 +56,7 @@ export class LoginPage implements OnInit {
     this.loading.dismiss();
     if (this.validateInputs()) {
     // tslint:disable-next-line: deprecation
-    this.authService.login(this.postData).subscribe((res: any) => {
+    this.authService.login(this.postData, this.logincode).subscribe((res: any) => {
       console.log('Done validate');
       console.log(res);
       // userData depend on name in API

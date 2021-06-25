@@ -13,8 +13,8 @@ export class MyprofileService {
     this.profileData$.next(data);
   }
 
-  profileData(postData: any): Observable<any>{
+  profileData(postData: any, code): Observable<any>{
     console.log('Get profile');
-    return this.httpService.getProfile('api/patron/GetAllPatrons', postData);
+    return this.httpService.getProfile('api/patron/GetAllPatrons', postData, code);
   }
 }

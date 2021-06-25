@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { HomePage } from 'src/app/home/home.page';
 import { AuthService } from 'src/app/services/auth.service';
 import { SearchhistService } from 'src/app/services/searchhist.service';
 import { ToastService } from 'src/app/services/toast.service';
@@ -19,7 +20,8 @@ export class MysearchhistoryPage implements OnInit {
   constructor(
     private auth: AuthService,
     private searchhistService: SearchhistService,
-    private toastService: ToastService) { }
+    private toastService: ToastService,
+    private home: HomePage) { }
 
 
 
@@ -37,7 +39,7 @@ export class MysearchhistoryPage implements OnInit {
     console.log('This is token');
     console.log(token);
     // tslint:disable-next-line: deprecation
-    this.searchhistService.searchhistData(token).subscribe(
+    this.searchhistService.searchhistData(token, this.home.homecode).subscribe(
         (res: any) => {
           console.log('Search History response');
           console.log(res);

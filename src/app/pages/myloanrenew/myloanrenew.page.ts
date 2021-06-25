@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HomePage } from 'src/app/home/home.page';
 import { AuthService } from 'src/app/services/auth.service';
 import { MyloanService } from 'src/app/services/myloan.service';
 import { ToastService } from 'src/app/services/toast.service';
@@ -18,7 +19,8 @@ export class MyloanrenewPage implements OnInit {
   constructor(
     private auth: AuthService,
     private loanService: MyloanService,
-    private toastService: ToastService) { }
+    private toastService: ToastService,
+    private home: HomePage) { }
 
 
 
@@ -36,7 +38,7 @@ export class MyloanrenewPage implements OnInit {
     console.log('This is token');
     console.log(token);
     // tslint:disable-next-line: deprecation
-    this.loanService.loanData(token).subscribe(
+    this.loanService.loanData(token, this.home.homecode).subscribe(
         (res: any) => {
           console.log('Loan response');
           console.log(res);

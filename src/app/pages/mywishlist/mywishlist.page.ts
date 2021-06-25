@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Observable } from 'rxjs';
+import { HomePage } from 'src/app/home/home.page';
 import { WishlistReqComponent } from 'src/app/modal/wishlist/wishlist-req/wishlist-req.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { MywishlistService } from 'src/app/services/mywishlist.service';
@@ -23,7 +24,8 @@ export class MywishlistPage implements OnInit {
     private modalContoller: ModalController,
     private auth: AuthService,
     private wishlistService: MywishlistService,
-    private toastService: ToastService) { }
+    private toastService: ToastService,
+    private home: HomePage) { }
 
   async openModel(){
   }
@@ -41,7 +43,7 @@ export class MywishlistPage implements OnInit {
     console.log('This is token');
     console.log(token);
     // tslint:disable-next-line: deprecation
-    this.wishlistService.wishlistData(token).subscribe(
+    this.wishlistService.wishlistData(token, this.home.homecode).subscribe(
         (res: any) => {
           console.log('Wishlist response');
           console.log(res);

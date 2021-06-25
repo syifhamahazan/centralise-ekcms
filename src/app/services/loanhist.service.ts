@@ -18,10 +18,10 @@ export class LoanhistService {
     this.loanhistData$.next(data);
   }
 
-  loanhistData(postData: any): Observable<any> {
+  loanhistData(postData: any, code: any): Observable<any> {
     console.log('Get Loan History');
     this.toastService.presentToast('Gathering data. Please wait!');
-    return this.httpService.getLoanhist('api/loanhistory/GetAllLoansHistory', postData);
+    return this.httpService.getLoanhist('api/loanhistory/GetAllLoansHistory', postData, code);
   }
 
 }

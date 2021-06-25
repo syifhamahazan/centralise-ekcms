@@ -3,7 +3,11 @@
       <ion-menu-button contentId="main" slot="start"><ion-icon src="../../../assets/icon/menucircle.svg"></ion-icon></ion-menu-button>      
   </ion-toolbar>
 <div class="ion-text-center web-opac">  
-  <img src="../../../assets/images/upsi-logo.png"/>
+  <img  *ngIf="searchcode == '010'" src="../../../assets/images/upsi-logo.png"/>
+  <img  *ngIf="searchcode == '011'" src="../../../assets/images/kuis-logo.png"/>
+  <img  *ngIf="searchcode == '020'" src="../../../assets/images/sc_logo.png"/>
+  <img  *ngIf="searchcode == '023'" src="../../../assets/images/mbsa-logo.png"/>
+  <img  *ngIf="searchcode == '025'" src="../../../assets/images/upsi-logo.png"/>
   <h5 class="ion-text-center" color="ekcms">ADVANCE SEARCH</h5>
 </div>
 <div id="formContainer">
@@ -19,9 +23,9 @@
           <ion-select-option value="Subject">Subject</ion-select-option>
           <ion-select-option value="CallNumber">Call Number</ion-select-option>
           <ion-select-option value="Series">Series</ion-select-option>
-          <ion-select-option value="Summary">Summary</ion-select-option>
-          <ion-select-option value="Language">Language</ion-select-option>
-          <ion-select-option value="DissertationNote">Dissertation Note</ion-select-option>
+          <ion-select-option value="Summary" *ngIf="searchcode == '010' || searchcode == '023'">Summary</ion-select-option>
+          <ion-select-option value="Language" *ngIf="searchcode == '010' || searchcode == '023'">Language</ion-select-option>
+          <ion-select-option value="DissertationNote" *ngIf="searchcode == '010' || searchcode == '023'">Dissertation Note</ion-select-option>
 
         </ion-select>
     </ion-item>

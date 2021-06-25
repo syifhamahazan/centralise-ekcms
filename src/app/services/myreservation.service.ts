@@ -16,10 +16,10 @@ export class MyreservationService {
     this.reservationData$.next(data);
   }
 
-  reservationData(postData: any): Observable<any>{
+  reservationData(postData: any, code:any): Observable<any>{
     console.log('Postdata is');
     this.toastService.presentToast('Gathering data. Please wait!');
     console.log(postData);
-    return this.httpService.getReservation('api/Reservation/GetAllReservation', postData);
+    return this.httpService.getReservation('api/Reservation/GetAllReservation', postData, code);
   }
 }

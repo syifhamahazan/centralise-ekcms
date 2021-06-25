@@ -16,10 +16,10 @@ export class MyfinesService {
     this.finesData$.next(data);
   }
 
-  finesData(postData: any): Observable<any> {
+  finesData(postData: any, code: any): Observable<any> {
     console.log('Get Loan');
     this.toastService.presentToast('Gathering data. Please wait!');
-    return this.httpService.getFines('api/fines/GetAllFines', postData);
+    return this.httpService.getFines('api/fines/GetAllFines', postData, code);
   }
 
 }

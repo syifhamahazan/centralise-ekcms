@@ -48,11 +48,10 @@ export class LoginAuthPage implements OnInit {
   });
     setTimeout(() => {
         this.loading.dismiss();
-        console.log(this.code);
-        if (this.code === '010'){
-          if (this.validateInputs){
+        console.log('hereee' + this.code);
+        if (this.validateInputs){
             // tslint:disable-next-line: deprecation
-            this.authService.login(this.postData).subscribe((res: any) => {
+            this.authService.authlogin(this.postData, this.code).subscribe((res: any) => {
               console.log('Done validate');
               console.log(res);
               // userData depend on name in API
@@ -75,11 +74,7 @@ export class LoginAuthPage implements OnInit {
           }
           // this.router.navigate(['./home/search']);
         }
-        else{
-          this.toastService.presentToast('Authorization failed! Please try again.');
-        }
-
-      }, 6000);
+    , 6000);
 
    }
 

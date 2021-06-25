@@ -4,13 +4,17 @@ import { AlertController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { MyprofileService } from '../services/myprofile.service';
 import { ToastService } from '../services/toast.service';
+const { Browser } = Plugins;
+import * as CryptoJS from 'crypto-js';
+import { Plugins } from '@capacitor/core';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-
+homecode: any;
   profileData: any;
   profileUser: any;
   public authUser: any;
@@ -34,6 +38,8 @@ export class HomePage implements OnInit {
       this.profileData = res;
       console.log('Get Profile');
       this.getProfile(res);
+      this.homecode = this.authService.authcode;
+      console.log('This is app for ' + this.homecode);
     });
 
    }
@@ -42,7 +48,7 @@ export class HomePage implements OnInit {
     console.log('This is token');
     console.log(token);
     // tslint:disable-next-line: deprecation
-    this.profileService.profileData(token).subscribe(
+    this.profileService.profileData(token, this.homecode).subscribe(
         (res: any) => {
           console.log('Profile response');
           console.log(res);
@@ -84,6 +90,19 @@ export class HomePage implements OnInit {
   serachField(){
     this.router.navigate(['./home/search']);
   }
+  eresources(username: any){
+    const timestamp = Math.floor(Date.now() / 1000);
+    const param = 'username=' + username + '&ts=' + timestamp;
+    console.log(param);
+
+    const key = CryptoJS.enc.Hex.parse(CryptoJS.SHA256('1Pn0M07ozr').toString());
+    const iv = CryptoJS.enc.Hex.parse('01020304050607080900010203040506');
+    const encrypted = CryptoJS.AES.encrypt(param, key, { iv });
+    console.log(encodeURIComponent(encrypted.toString()));
+    Browser.open({ url: 'http://115.133.237.17:18888/Home/OnlineDatabaseSubscriptionsMobile?e='
+    + encodeURIComponent(encrypted.toString())});
+    }
+
   myloan(){
     this.router.navigate(['./home/myloanrenew']);
   }
@@ -97,6 +116,10 @@ export class HomePage implements OnInit {
   about(){
     this.router.navigate(['./home/about']);
   }
+  myothercharges(){
+    this.router.navigate(['./home/myothercharges']);
+  }
+
   async logoutAction() {
     const alert = await this.alertController.create({
       header: 'Oh no! You are leaving...',

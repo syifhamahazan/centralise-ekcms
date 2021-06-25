@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HomePage } from 'src/app/home/home.page';
 import { AuthService } from 'src/app/services/auth.service';
 import { MyemailsService } from 'src/app/services/myemails.service';
 import { ToastService } from 'src/app/services/toast.service';
@@ -19,7 +20,8 @@ export class MyemailPage implements OnInit {
   constructor(
     private auth: AuthService,
     private myemailsService: MyemailsService,
-    private toastService: ToastService) { }
+    private toastService: ToastService,
+    private home: HomePage) { }
 
   ngOnInit() {
     // tslint:disable-next-line: deprecation
@@ -36,7 +38,7 @@ export class MyemailPage implements OnInit {
     console.log('This is token');
     console.log(token);
     // tslint:disable-next-line: deprecation
-    this.myemailsService.emailsData(token).subscribe(
+    this.myemailsService.emailsData(token, this.home.homecode).subscribe(
         (res: any) => {
           console.log('Emails response');
           console.log(res);

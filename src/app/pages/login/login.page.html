@@ -5,7 +5,11 @@
     <ion-menu-button contentId="main" slot="start"><ion-icon src="../../../assets/icon/menucircle.svg"></ion-icon></ion-menu-button>      
 </ion-toolbar> -->
   <div class="logo">  
-  <app-logo></app-logo>
+  <img  *ngIf="logincode == '010'" src="../../../assets/images/upsi-logo.png"/>
+  <img  *ngIf="logincode == '011'" src="../../../assets/images/kuis-logo.png"/>
+  <img  *ngIf="logincode == '020'" src="../../../assets/images/sc_logo.png"/>
+  <img  *ngIf="logincode == '023'" src="../../../assets/images/mbsa-logo.png"/>
+  <img  *ngIf="logincode == '025'" src="../../../assets/images/upsi-logo.png"/>
 </div>
   <!-- <div class="form">
     <ion-item>
@@ -33,22 +37,8 @@
       <ion-button expand="block" (click)="loginAction()" class="main-button">Login<span>&#10230;</span></ion-button>
     </div>
   </div>
-  <!-- <ion-tabs>
-
-    <ion-tab-bar slot="bottom" class="ion-text-color">
-
-      <ion-tab-button tab="search" routerLink='/forgot'>
-        <ion-icon name="alert-circle-outline"></ion-icon>
-          <ion-label>FORGOT USERNAME</ion-label>
-        </ion-tab-button>
-      
-      <ion-tab-button tab="mywishlist" routerLink='/signup'>
-        <ion-icon name="person-add-outline"></ion-icon>
-        <ion-label>NEW REGISTRATION</ion-label>
-      </ion-tab-button>
-
-      </ion-tab-bar>
-    </ion-tabs> -->
+  
+  <a [routerLink]="['/login-auth']" class="small-text"> Logout from Organisation</a>
 </ion-content>
 
 

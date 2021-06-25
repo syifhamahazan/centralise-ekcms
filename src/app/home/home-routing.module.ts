@@ -87,6 +87,11 @@ const routes: Routes = [
         loadChildren: () => import('../pages/about/about.module').then( m => m.AboutPageModule)
       },
       {
+        path: 'myothercharges',
+        loadChildren: () => import('../pages/myothercharges/myothercharges.module').then( m => m.MyotherchargesPageModule)
+      },
+
+      {
        path: 'logout',
        loadChildren: () => import('../pages/logout/logout.module').then( m => m.LogoutPageModule)
      }

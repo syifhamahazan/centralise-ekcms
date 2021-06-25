@@ -9,6 +9,7 @@ import { ToastService } from 'src/app/services/toast.service';
 import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
 import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer/ngx';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
+import { HomePage } from 'src/app/home/home.page';
 
 @Component({
   selector: 'app-search',
@@ -25,7 +26,7 @@ export class SearchPage implements OnInit {
   results: Observable<any>;
   metadata: Observable<any>;
   repository: Observable<any>;
-
+  searchcode: any;
   // tslint:disable-next-line: no-inferrable-types
   searchTerm: string = '';
   type: SearchType = SearchType.title;
@@ -37,13 +38,16 @@ export class SearchPage implements OnInit {
     private toastService: ToastService,
     private previewAnyFile: PreviewAnyFile,
     private document: DocumentViewer,
-    private fileOpener: FileOpener) {
+    private fileOpener: FileOpener,
+    private home: HomePage) {
      }
    options: DocumentViewerOptions = {
       title: 'My PDF'
     };
 
   ngOnInit() {
+    this.searchcode = this.home.homecode;
+    console.log('searching code ' + this.searchcode);
     // tslint:disable-next-line: deprecation
     this.auth.userData$.subscribe((res: any) => {
       this.authUser = res;
@@ -56,9 +60,9 @@ export class SearchPage implements OnInit {
     // Call our service function which returns an Observable
     console.log('Token for search');
     console.log(this.authUser);
-    this.results = this.opacSearchService.searchData(this.searchTerm, this.type, this.authUser);
-    this.metadata = this.opacSearchService.searchMetadata(this.searchTerm, this.type, this.authUser);
-    this.repository = this.opacSearchService.searchRepo(this.searchTerm, this.type, this.authUser);
+    this.results = this.opacSearchService.searchData(this.searchTerm, this.type, this.authUser, this.home.homecode);
+    this.metadata = this.opacSearchService.searchMetadata(this.searchTerm, this.type, this.authUser, this.home.homecode);
+    this.repository = this.opacSearchService.searchRepo(this.searchTerm, this.type, this.authUser, this.home.homecode);
     console.log(this.results);
   }
 

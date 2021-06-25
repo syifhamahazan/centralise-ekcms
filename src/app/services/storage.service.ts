@@ -35,7 +35,6 @@ export class StorageService {
   // Remove key
   async removeItem(storageKey: string) {
     await Storage.remove({key: storageKey});
-    window.location.reload();
   }
 
 

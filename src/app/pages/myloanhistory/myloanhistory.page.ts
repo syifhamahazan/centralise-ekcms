@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { HomePage } from 'src/app/home/home.page';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoanhistService } from 'src/app/services/loanhist.service';
 import { ToastService } from 'src/app/services/toast.service';
@@ -19,7 +20,8 @@ export class MyloanhistoryPage implements OnInit {
   constructor(
     private auth: AuthService,
     private loanhistService: LoanhistService,
-    private toastService: ToastService) { }
+    private toastService: ToastService,
+    private home: HomePage) { }
 
 
 
@@ -38,7 +40,7 @@ export class MyloanhistoryPage implements OnInit {
     console.log('This is token');
     console.log(token);
     // tslint:disable-next-line: deprecation
-    this.loanhistService.loanhistData(token).subscribe(
+    this.loanhistService.loanhistData(token, this.home.homecode).subscribe(
         (res: any) => {
           console.log('Loan History response');
           console.log(res);

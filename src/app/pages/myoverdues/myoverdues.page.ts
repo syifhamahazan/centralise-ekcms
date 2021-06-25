@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HomePage } from 'src/app/home/home.page';
 import { AuthService } from 'src/app/services/auth.service';
 import { MyoverdueService } from 'src/app/services/myoverdue.service';
 import { ToastService } from 'src/app/services/toast.service';
@@ -20,7 +21,8 @@ export class MyoverduesPage implements OnInit {
   constructor(
     private auth: AuthService,
     private myoverdueService: MyoverdueService,
-    private toastService: ToastService) { }
+    private toastService: ToastService,
+    private home: HomePage) { }
 
   ngOnInit() {
     // tslint:disable-next-line: deprecation
@@ -36,7 +38,7 @@ export class MyoverduesPage implements OnInit {
     console.log('This is token');
     console.log(token);
     // tslint:disable-next-line: deprecation
-    this.myoverdueService.overdueData(token).subscribe(
+    this.myoverdueService.overdueData(token, this.home.homecode).subscribe(
         (res: any) => {
           console.log('Overdue response');
           console.log(res);

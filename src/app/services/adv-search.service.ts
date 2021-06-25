@@ -97,16 +97,38 @@ export enum Operators4 {
   providedIn: 'root'
 })
 export class AdvSearchService {
+  apiUrl: any;
+  url: any;
 
-  url =  environment.apiUrl + '/api/AdvanceSearch/GetMaterialsAdvance?searchtext=';
+  // url =  environment.apiUrl + '/api/AdvanceSearch/GetMaterialsAdvance?searchtext=';
 
 
 
   constructor(private http: HttpClient) { }
 
   searchData(title1: string, type1: SearchType1, operators1: string,
-             title2: string, type2: SearchType2, operators2: string, token ): Observable<any> {
+             title2: string, type2: SearchType2, operators2: string, token, code:any ): Observable<any> {
+    if ( code === '010'){
+      this.apiUrl = environment.upsiUrl ;
+    }
+    else if (code === '011') {
+      this.apiUrl = environment.kuisUrl ;
+    }
 
+    else if (code === '020') {
+    this.apiUrl = environment.scUrl ;
+  }
+
+    else if (code === '023') {
+    this.apiUrl = environment.mbsaUrl ;
+  }
+
+    else if (code === '025') {
+    this.apiUrl = environment.apiUrl ;
+  }
+
+
+    this.url = this.apiUrl + '/api/AdvanceSearch/GetMaterialsAdvance?searchtext=';
     const headerDict = {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
@@ -125,30 +147,28 @@ export class AdvSearchService {
 
   searchData2(title1: string, type1: SearchType1, operators1: string,
               title2: string, type2: SearchType2, operators2: string,
-              title3: string, type3: string, operators3: string, token): Observable<any> {
-
-      const headerDict = {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
-      'Access-Control-Allow-Headers': 'Authorization',
-      'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + token
-      };
-
-      const requestOptions = {
-      headers: new HttpHeaders(headerDict)
-      };
-      // tslint:disable-next-line:max-line-length
-      return this.http.get(`${this.url}${type1},${encodeURI(title1)},${operators1};${type2},${encodeURI(title2)},${operators2};${type3},${encodeURI(title3)},${operators3};`, requestOptions).pipe(map(results => results)
-      );
+              title3: string, type3: string, operators3: string, token, code:any): Observable<any> {
+  if ( code === '010'){
+    this.apiUrl = environment.upsiUrl ;
+  }
+  else if (code === '011') {
+    this.apiUrl = environment.kuisUrl ;
   }
 
-  searchData3(
-    title1: string, type1: SearchType1, operators1: string,
-    title2: string, type2: SearchType2, operators2: string,
-    title3: string, type3: string, operators3: string,
-    title4: string, type4: string, operators4: string, token): Observable<any> {
+  else if (code === '020') {
+  this.apiUrl = environment.scUrl ;
+}
 
+  else if (code === '023') {
+  this.apiUrl = environment.mbsaUrl ;
+}
+
+  else if (code === '025') {
+  this.apiUrl = environment.apiUrl ;
+}
+
+
+  this.url = this.apiUrl + '/api/AdvanceSearch/GetMaterialsAdvance?searchtext=';
 
   const headerDict = {
   'Access-Control-Allow-Origin': '*',
@@ -162,12 +182,75 @@ export class AdvSearchService {
   headers: new HttpHeaders(headerDict)
   };
   // tslint:disable-next-line:max-line-length
-  return this.http.get(`${this.url}${type1},${encodeURI(title1)},${operators1};${type2},${encodeURI(title2)},${operators2};${type3},${encodeURI(title3)},${operators3};${type4},${encodeURI(title4)},${operators4};`, requestOptions).pipe(
-  map(results => results)
+  return this.http.get(`${this.url}${type1},${encodeURI(title1)},${operators1};${type2},${encodeURI(title2)},${operators2};${type3},${encodeURI(title3)},${operators3};`, requestOptions).pipe(map(results => results)
   );
   }
 
-  getAdvDetails(cwId, token) {
+  searchData3(
+    title1: string, type1: SearchType1, operators1: string,
+    title2: string, type2: SearchType2, operators2: string,
+    title3: string, type3: string, operators3: string,
+    title4: string, type4: string, operators4: string, token, code: any): Observable<any> {
+if ( code === '010'){
+ this.apiUrl = environment.upsiUrl ;
+}
+else if (code === '011') {
+ this.apiUrl = environment.kuisUrl ;
+}
+
+else if (code === '020') {
+this.apiUrl = environment.scUrl ;
+}
+
+else if (code === '023') {
+this.apiUrl = environment.mbsaUrl ;
+}
+
+else if (code === '025') {
+this.apiUrl = environment.apiUrl ;
+}
+
+
+this.url = this.apiUrl + '/api/AdvanceSearch/GetMaterialsAdvance?searchtext=';
+
+
+const headerDict = {
+'Access-Control-Allow-Origin': '*',
+'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+'Access-Control-Allow-Headers': 'Authorization',
+'Content-Type': 'application/json',
+Authorization: 'Bearer ' + token
+};
+
+const requestOptions = {
+headers: new HttpHeaders(headerDict)
+};
+// tslint:disable-next-line:max-line-length
+return this.http.get(`${this.url}${type1},${encodeURI(title1)},${operators1};${type2},${encodeURI(title2)},${operators2};${type3},${encodeURI(title3)},${operators3};${type4},${encodeURI(title4)},${operators4};`, requestOptions).pipe(
+map(results => results)
+);
+}
+
+  getAdvDetails(cwId, token, code) {
+    if ( code === '010'){
+      this.apiUrl = environment.upsiUrl ;
+    }
+    else if (code === '011') {
+      this.apiUrl = environment.kuisUrl ;
+   }
+
+   else if (code === '020') {
+    this.apiUrl = environment.scUrl ;
+  }
+
+   else if (code === '023') {
+    this.apiUrl = environment.mbsaUrl ;
+  }
+
+   else if (code === '025') {
+    this.apiUrl = environment.apiUrl ;
+  }
+
     this.url =  environment.apiUrl + '/api/AdvanceSearch/GetMaterialsAdvance?searchtext=';
     console.log('URL ADVANCE' + this.url);
     const headerDict = {
